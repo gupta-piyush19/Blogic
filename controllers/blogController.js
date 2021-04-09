@@ -37,7 +37,7 @@ exports.getBlogById = async (req, res) => {
 
 exports.createBlog = async (req, res) => {
   try {
-    const blog = await Blog.create(req.body);
+    const blog = await Blog.create({ ...req.body, owner: req.user.id });
     res.status(200).json({
       status: "success",
       data: {
@@ -79,6 +79,26 @@ exports.deleteBlog = async (req, res) => {
     res.status(200).json({
       status: "success",
       message: "Blog Successfully Deleted",
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "fail",
+      message: err.message,
+    });
+  }
+};
+
+exports.getAllBlogByUser = async (req, res) => {
+  try {
+    const blogs = await Blog.find({ owner: req.params.userId }).populate(
+      "owner"
+    );
+    res.status(200).json({
+      status: "success",
+      results: blogs.length,
+      data: {
+        blogs,
+      },
     });
   } catch (err) {
     res.status(400).json({
