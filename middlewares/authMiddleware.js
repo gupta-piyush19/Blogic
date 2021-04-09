@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const Blog = require("../models/Blog");
 
 // Allow only if user is logged-in
 exports.protect = (req, res, next) => {
@@ -20,5 +21,36 @@ exports.protect = (req, res, next) => {
       status: "fail",
       message: err.message,
     });
+  }
+};
+
+exports.isOwner = async (req, res, next) => {
+  const { userId, blogId } = req.params;
+  if (userId) {
+    console.log(userId, req.user.id);
+    console.log(typeof userId, typeof req.user.id);
+    if (!(req.user.id == userId)) {
+      return res.status(400).json({
+        status: "fail",
+        message: "You are not authorised to perform this action.",
+      });
+    }
+    next();
+  } else if (blogId) {
+    try {
+      const blog = await Blog.findById(blogId);
+      if (!blog.owner.equals(req.user.id)) {
+        return res.status(400).json({
+          status: "fail",
+          message: "You are not authorised to perform this action.",
+        });
+      }
+      next();
+    } catch (err) {
+      res.status(400).json({
+        status: "fail",
+        message: err.message,
+      });
+    }
   }
 };

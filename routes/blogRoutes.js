@@ -9,7 +9,7 @@ const {
   getAllBlogByUser,
 } = require("../controllers/blogController");
 
-const { protect } = require("../middlewares/authMiddleware");
+const { protect, isOwner } = require("../middlewares/authMiddleware");
 
 // @desc    Get all Blogs
 // @route   GET /api/blogs
@@ -23,22 +23,22 @@ router.get("/:blogId", getBlogById);
 
 // @desc    Create a Blog
 // @route   POST /api/blogs
-// @access  private isLoggedIn,
+// @access  private
 router.post("/", protect, createBlog);
 
 // @desc    Update Blog
 // @route   PATCH /api/blogs/:blogId
-// @access  private  isLoggedIn, isOwner,
-router.patch("/:blogId", protect, updateBlog);
+// @access  private
+router.patch("/:blogId", protect, isOwner, updateBlog);
 
 // @desc    Delete a Blog
-// @route   DELETE /api/blogs/blogId
-// @access  private  isLoggedIn, isOwner,
-router.delete("/:blogId", protect, deleteBlog);
+// @route   DELETE /api/blogs/:blogId
+// @access  private
+router.delete("/:blogId", protect, isOwner, deleteBlog);
 
 // @desc    Get all Blogs by a particular User
-// @route   GET /api/blogs/user/:userId
+// @route   GET /api/blogs/by/:userId
 // @access  public
-router.get("/user/:userId", getAllBlogByUser);
+router.get("/by/:userId", getAllBlogByUser);
 
 module.exports = router;

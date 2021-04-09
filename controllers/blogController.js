@@ -21,6 +21,13 @@ exports.getAllBlogs = async (req, res) => {
 exports.getBlogById = async (req, res) => {
   try {
     const blog = await Blog.findById(req.params.blogId);
+    if (!blog) {
+      return res.status(404).json({
+        status: "fail",
+        message: "Blog does not exist",
+      });
+    }
+
     res.status(200).json({
       status: "success",
       data: {
@@ -90,9 +97,7 @@ exports.deleteBlog = async (req, res) => {
 
 exports.getAllBlogByUser = async (req, res) => {
   try {
-    const blogs = await Blog.find({ owner: req.params.userId }).populate(
-      "owner"
-    );
+    const blogs = await Blog.find({ owner: req.params.userId });
     res.status(200).json({
       status: "success",
       results: blogs.length,

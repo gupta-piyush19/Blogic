@@ -7,7 +7,7 @@ const {
   deleteUser,
 } = require("../controllers/userController");
 
-const { protect } = require("../middlewares/authMiddleware");
+const { protect, isOwner } = require("../middlewares/authMiddleware");
 
 // @desc    Get All Users
 // @route   GET /api/users/
@@ -21,12 +21,12 @@ router.get("/:userId", getUserById);
 
 // @desc    Update User
 // @route   PATCH /api/users/:userId
-// @access  public
-router.patch("/:userId", protect, updateUser);
+// @access  private
+router.patch("/:userId", protect, isOwner, updateUser);
 
 // @desc    Delete User
 // @route   DELETE /api/users/:userId
-// @access  public
-router.delete("/:userId", protect, deleteUser);
+// @access  private
+router.delete("/:userId", protect, isOwner, deleteUser);
 
 module.exports = router;

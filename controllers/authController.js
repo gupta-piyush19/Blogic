@@ -6,6 +6,20 @@ exports.register = async (req, res) => {
   const { name, email, password } = req.body;
 
   try {
+    if (!email || !password) {
+      return res.status(400).json({
+        status: "fail",
+        message: "Please provide both email and password.",
+      });
+    }
+
+    if (password.length < 8) {
+      return res.status(400).json({
+        status: "fail",
+        message: "Password should be more than 8 characters long",
+      });
+    }
+
     let user = await User.findOne({ email });
     if (user) {
       return res.status(409).json({
