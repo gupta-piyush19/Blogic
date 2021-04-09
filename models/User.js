@@ -12,10 +12,10 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: [true, "Please enter some password"],
     minlength: [8, "Password should be atleast 8 characters long"],
+    required: [true, "Please enter some password"],
     select: false,
   },
 });
 
-module.exports = mongoose.model(User, userSchema);
+module.exports = mongoose.model("User", userSchema);

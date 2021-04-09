@@ -6,6 +6,8 @@ const app = express();
 const connectDB = require("./config/DB");
 connectDB();
 
+app.use(express.json());
+
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/blogs", require("./routes/blogRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
