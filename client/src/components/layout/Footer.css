@@ -1,0 +1,48 @@
+#main-footer {
+  background: #333;
+  color: #fff;
+  height: 5rem;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+a {
+  color: #fff;
+}
+
+#main-footer .footer-content {
+  display: flex;
+  justify-content: space-between;
+  height: 5rem;
+  align-items: center;
+}
+
+#main-footer .footer-content .social .fab {
+  font-size: 25px;
+  margin-right: 1rem;
+  border: 2px #fff solid;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  text-align: center;
+  padding: 0.5rem;
+  transition: all 0.3s ease-in-out;
+}
+
+#main-footer .footer-content .social .fa-github:hover {
+  transform: scale(1.2);
+  background: #fff;
+  color: #333;
+  border-color: steelblue;
+}
+
+#main-footer .footer-content .social .fa-linkedin:hover {
+  transform: scale(1.2);
+  background: #fff;
+  color: #0072b1;
+  border-color: steelblue;
+}
