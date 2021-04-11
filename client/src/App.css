@@ -1,0 +1,14 @@
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  flex: 1 0 auto;
+}
+
+.main-app {
+  flex: 1 0 auto;
+}

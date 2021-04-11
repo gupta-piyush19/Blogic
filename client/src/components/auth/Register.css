@@ -1,0 +1,63 @@
+.flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.register {
+  margin-top: 50px;
+}
+
+.form-container {
+  width: 65%;
+  text-align: center;
+}
+
+.form-container h1 {
+  font-size: 3rem;
+  font-family: "Courier New", Courier, monospace;
+  text-transform: uppercase;
+  text-decoration: underline solid 2px red;
+}
+
+.form-group {
+  margin-bottom: 2rem;
+}
+
+.form-container input {
+  width: 80%;
+  font-size: 1rem;
+  padding: 0.5rem 0.2rem;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #999;
+  transition: border 0.1s ease-in-out;
+}
+
+.form-container input:focus {
+  border-bottom: 2px solid steelblue;
+}
+
+.form-container button {
+  width: 50%;
+  padding: 0.8rem;
+  outline: none;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  background: #32a2d6;
+  color: #fff;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-container button:hover {
+  letter-spacing: 0.3rem;
+  background: #2a93c1;
+}
+
+.form-container p span a {
+  text-decoration: none;
+  color: rgb(38, 145, 217);
+}

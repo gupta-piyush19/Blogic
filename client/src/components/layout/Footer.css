@@ -1,12 +1,8 @@
 #main-footer {
+  margin-top: auto;
   background: #333;
   color: #fff;
   height: 5rem;
-}
-
-.container {
-  max-width: 1100px;
-  margin: auto;
 }
 
 a {
@@ -25,11 +21,10 @@ a {
   margin-right: 1rem;
   border: 2px #fff solid;
   border-radius: 50%;
-  height: 30px;
-  width: 30px;
+  width: 50px;
   line-height: 30px;
   text-align: center;
-  padding: 0.5rem;
+  padding: 0.6rem;
   transition: all 0.3s ease-in-out;
 }
 
