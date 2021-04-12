@@ -6,7 +6,7 @@
 }
 
 .register {
-  margin-top: 50px;
+  width: 100%;
 }
 
 .form-container {
@@ -53,7 +53,6 @@
 }
 
 .form-container button:hover {
-  letter-spacing: 0.3rem;
   background: #2a93c1;
 }
 

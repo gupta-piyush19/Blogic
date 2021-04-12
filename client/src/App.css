@@ -6,9 +6,10 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  flex: 1 0 auto;
 }
 
 .main-app {
+  display: flex;
   flex: 1 0 auto;
+  align-items: center;
 }

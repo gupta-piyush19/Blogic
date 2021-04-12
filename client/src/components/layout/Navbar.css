@@ -7,9 +7,7 @@
 .container {
   max-width: 1100px;
   margin: auto;
-  overflow: auto;
   padding: 0 40px;
-  overflow: hidden;
   height: 100%;
 }
 
@@ -21,6 +19,7 @@ ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 100%;
 }
 
 .navbar-content #logo {

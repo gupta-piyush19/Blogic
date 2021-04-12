@@ -2,6 +2,22 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+exports.sendCurrentUser = async (req, res) => {
+  try {
+    if (req.user) {
+      res.status(200).json({
+        status: "success",
+        data: { user: req.user },
+      });
+    }
+  } catch (err) {
+    res.status(400).json({
+      status: "fail",
+      message: "You are not logged in",
+    });
+  }
+};
+
 exports.register = async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -91,7 +107,7 @@ exports.login = async (req, res) => {
 
     res.status(200).json({
       status: "success",
-      token,
+      data: { token },
     });
   } catch (err) {
     res.status(400).json({

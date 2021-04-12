@@ -1,11 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const { register, login } = require("../controllers/authController");
+const {
+  register,
+  login,
+  sendCurrentUser,
+} = require("../controllers/authController");
+const { protect } = require("../middlewares/authMiddleware");
 
-// @desc    Get User from token(is logged in)
+// @desc    Get Current User
 // @route   GET /api/auth
-// @access  public , protect, isLoggedIn
-// router.get("/" )
+// @access  protect, isLoggedIn
+router.get("/", protect, sendCurrentUser);
 
 // @desc    Login User
 // @route   POST /api/auth/login
