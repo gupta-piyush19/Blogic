@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import "./Register.css";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/auth/authContext";
+import Alert from "../layout/Alert";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -31,6 +32,7 @@ const Register = () => {
     <div className="register">
       <div className="container flex">
         <div className="form-container">
+          <Alert />
           <h1>Register</h1>
           <form onSubmit={handleSubmit}>
             <div className="form-group">

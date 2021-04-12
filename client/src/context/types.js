@@ -6,3 +6,5 @@ export const USER_LOADED = "USER_LOADED";
 export const AUTH_FAIL = "AUTH_FAIL";
 export const CLEAR_ERROR = "CLEAR_ERROR";
 export const LOGOUT = "LOGOUT";
+export const SET_ALERT = "SET_ALERT";
+export const CLEAR_ALERT = "CLEAR_ALERT";

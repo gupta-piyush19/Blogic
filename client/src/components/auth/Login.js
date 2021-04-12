@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import AuthContext from "../../context/auth/authContext";
+import AlertContext from "../../context/alert/alertContext";
+import Alert from "../layout/Alert";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -11,7 +13,7 @@ const Login = () => {
   const history = useHistory();
 
   const { login, error, isAuthenticated, clearError } = useContext(AuthContext);
-
+  const { setAlert } = useContext(AlertContext);
   const { email, password } = formData;
 
   const onChange = (e) => {
@@ -25,7 +27,11 @@ const Login = () => {
     if (isAuthenticated) {
       history.push("/");
     }
-  }, [isAuthenticated]);
+    if (error) {
+      setAlert(error, "danger");
+      clearError();
+    }
+  }, [isAuthenticated, error]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,6 +47,7 @@ const Login = () => {
     >
       <div className="container flex">
         <div className="form-container">
+          <Alert />
           <h1>Login</h1>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
