@@ -25,7 +25,7 @@
   margin-bottom: 2rem;
 }
 
-.form-container input {
+.form-container input:not([type="checkbox"]) {
   width: 80%;
   font-size: 1rem;
   padding: 0.5rem 0.2rem;
@@ -37,6 +37,18 @@
 
 .form-container input:focus {
   border-bottom: 2px solid steelblue;
+}
+
+.show-password {
+  text-align: left;
+  font-size: 16px;
+  margin: 10px 10%;
+}
+
+.show-password input {
+  margin: 0 5px 0 0;
+  height: 1rem;
+  width: 1rem;
 }
 
 .form-container button {

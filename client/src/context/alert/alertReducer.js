@@ -12,5 +12,7 @@ export default (state, action) => {
         ...state,
         alert: null,
       };
+    default:
+      return state;
   }
 };

@@ -1,0 +1,18 @@
+.alert {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  color: white;
+}
+
+.alert-danger {
+  background: rgba(200, 10, 10, 0.9);
+}
+
+.alert-primary {
+  background-color: #00d84a;
+}
+
+.alert-secondary {
+  background-color: #1b98f5;
+}

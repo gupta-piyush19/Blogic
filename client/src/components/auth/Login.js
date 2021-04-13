@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import AuthContext from "../../context/auth/authContext";
 import AlertContext from "../../context/alert/alertContext";
@@ -11,6 +11,7 @@ const Login = () => {
   });
 
   const history = useHistory();
+  const passwordCol = useRef(null);
 
   const { login, error, isAuthenticated, clearError } = useContext(AuthContext);
   const { setAlert } = useContext(AlertContext);
@@ -38,6 +39,14 @@ const Login = () => {
     login(formData);
   };
 
+  const showPassword = () => {
+    if (passwordCol.current.type === "password") {
+      passwordCol.current.type = "text";
+    } else {
+      passwordCol.current.type = "password";
+    }
+  };
+
   return (
     <div
       className="login"
@@ -58,7 +67,7 @@ const Login = () => {
                 value={email}
                 onChange={onChange}
                 autoComplete="off"
-                required
+                // required
               />
             </div>
             <div className="form-group">
@@ -69,8 +78,18 @@ const Login = () => {
                 value={password}
                 onChange={onChange}
                 autoComplete="off"
-                required
+                ref={passwordCol}
+                // required
               />
+              <div className="show-password">
+                <input
+                  type="checkbox"
+                  name="showPassword"
+                  id="showPassword"
+                  onChange={showPassword}
+                />
+                <label htmlFor="showPassword">Show Password</label>
+              </div>
             </div>
             <div className="form-group">
               <button type="submit">Login</button>

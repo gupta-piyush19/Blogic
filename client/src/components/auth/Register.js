@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import "./Register.css";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/auth/authContext";
@@ -14,6 +14,7 @@ const Register = () => {
   const { register, error, isAuthenticated, clearError } = useContext(
     AuthContext
   );
+  const passwordCol = useRef(null);
 
   const { name, email, password } = formData;
 
@@ -26,6 +27,14 @@ const Register = () => {
 
   const handleSubmit = async () => {
     register(formData);
+  };
+
+  const showPassword = () => {
+    if (passwordCol.current.type === "password") {
+      passwordCol.current.type = "text";
+    } else {
+      passwordCol.current.type = "password";
+    }
   };
 
   return (
@@ -63,7 +72,17 @@ const Register = () => {
                 onChange={onChange}
                 placeholder="Password"
                 autoComplete="off"
+                ref={passwordCol}
               />
+              <div className="show-password">
+                <input
+                  type="checkbox"
+                  name="showPassword"
+                  id="showPassword"
+                  onChange={showPassword}
+                />
+                <label htmlFor="showPassword">Show Password</label>
+              </div>
             </div>
             <div className="form-group">
               <button type="submit">Register</button>
