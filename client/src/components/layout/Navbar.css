@@ -44,6 +44,15 @@ ul {
   transition: border-color 0.5s;
 }
 
+.temp-style {
+  text-decoration: none;
+  color: #fff;
+  text-transform: uppercase;
+  border-bottom: 3px transparent solid;
+  padding-bottom: 0.5rem;
+  transition: border-color 0.5s;
+}
+
 .navbar-content .links a:hover {
   border-color: #ccc;
 }

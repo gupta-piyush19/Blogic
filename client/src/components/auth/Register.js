@@ -1,7 +1,8 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "./Register.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import AuthContext from "../../context/auth/authContext";
+import AlertContext from "../../context/alert/alertContext";
 import Alert from "../layout/Alert";
 
 const Register = () => {
@@ -10,13 +11,25 @@ const Register = () => {
     email: "",
     password: "",
   });
+  const { name, email, password } = formData;
 
   const { register, error, isAuthenticated, clearError } = useContext(
     AuthContext
   );
+  const { setAlert } = useContext(AlertContext);
   const passwordCol = useRef(null);
 
-  const { name, email, password } = formData;
+  const history = useHistory();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push("/");
+    }
+    if (error) {
+      setAlert(error, "danger");
+      clearError();
+    }
+  }, [isAuthenticated, error]);
 
   const onChange = (e) => {
     setFormData((prevData) => ({
@@ -25,7 +38,8 @@ const Register = () => {
     }));
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     register(formData);
   };
 
@@ -52,11 +66,12 @@ const Register = () => {
                 onChange={onChange}
                 placeholder="Name"
                 autoComplete="off"
+                required
               />
             </div>
             <div className="form-group">
               <input
-                type="text"
+                type="email"
                 name="email"
                 value={email}
                 onChange={onChange}
