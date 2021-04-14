@@ -61,7 +61,7 @@ const DraftEditor = () => {
   }, []);
 
   const focusEditor = () => {
-    return editor.current.focus();
+    editor.current.focus();
   };
 
   const handleKeyCommand = (command) => {
@@ -134,13 +134,9 @@ const DraftEditor = () => {
         <input type="text" name="title" placeholder="Enter Title" />
       </div>
 
-      <div className="editor-wrapper">
-        <Toolbar
-          editorState={editorState}
-          setEditorState={setEditorState}
-          focusEditor={focusEditor}
-        />
-        <div className="editor-container" onClick={focusEditor}>
+      <div className="editor-wrapper" onClick={focusEditor}>
+        <Toolbar editorState={editorState} setEditorState={setEditorState} />
+        <div className="editor-container">
           <Editor
             ref={editor}
             placeholder="Write Here"
@@ -148,7 +144,6 @@ const DraftEditor = () => {
             editorState={editorState}
             customStyleMap={styleMap}
             blockStyleFn={myBlockStyleFn}
-            onClick={focusEditor}
             onChange={(editorState) => {
               const contentState = editorState.getCurrentContent();
               console.log(convertToRaw(contentState));

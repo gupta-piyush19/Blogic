@@ -21,11 +21,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { RichUtils } from "draft-js";
 
-const Toolbar = ({ editorState, setEditorState, focusEditor }) => {
-  useEffect(() => {
-    focusEditor();
-  }, [editorState]);
-
+const Toolbar = ({ editorState, setEditorState }) => {
   const tools = [
     {
       label: "bold",
@@ -170,6 +166,7 @@ const Toolbar = ({ editorState, setEditorState, focusEditor }) => {
           key={`${item.label}-${idx}`}
           title={item.label}
           onClick={(e) => applyStyle(e, item.style, item.method)}
+          onMouseDown={(e) => e.preventDefault()}
         >
           {item.icon || item.label}
         </button>
