@@ -7,6 +7,7 @@ import {
   convertFromRaw,
 } from "draft-js";
 import Toolbar from "./Toolbar/Toolbar";
+
 import "./DraftEditor.css";
 
 const DraftEditor = () => {
@@ -57,10 +58,10 @@ const DraftEditor = () => {
 
   useEffect(() => {
     focusEditor();
-  }, [editorState]);
+  }, []);
 
   const focusEditor = () => {
-    editor.current.focus();
+    return editor.current.focus();
   };
 
   const handleKeyCommand = (command) => {
@@ -129,8 +130,16 @@ const DraftEditor = () => {
 
   return (
     <div className="container">
+      <div className="title-input ">
+        <input type="text" name="title" placeholder="Enter Title" />
+      </div>
+
       <div className="editor-wrapper">
-        <Toolbar editorState={editorState} setEditorState={setEditorState} />
+        <Toolbar
+          editorState={editorState}
+          setEditorState={setEditorState}
+          focusEditor={focusEditor}
+        />
         <div className="editor-container" onClick={focusEditor}>
           <Editor
             ref={editor}
@@ -139,6 +148,7 @@ const DraftEditor = () => {
             editorState={editorState}
             customStyleMap={styleMap}
             blockStyleFn={myBlockStyleFn}
+            onClick={focusEditor}
             onChange={(editorState) => {
               const contentState = editorState.getCurrentContent();
               console.log(convertToRaw(contentState));

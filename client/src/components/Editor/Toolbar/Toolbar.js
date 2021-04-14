@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAlignCenter,
@@ -21,7 +21,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { RichUtils } from "draft-js";
 
-const Toolbar = ({ editorState, setEditorState }) => {
+const Toolbar = ({ editorState, setEditorState, focusEditor }) => {
+  useEffect(() => {
+    focusEditor();
+  }, [editorState]);
+
   const tools = [
     {
       label: "bold",
@@ -158,7 +162,6 @@ const Toolbar = ({ editorState, setEditorState }) => {
     <div className="toolbar-grid">
       {tools.map((item, idx) => (
         <button
-          isActive={isActive(item.style, item.method)}
           style={{
             color: isActive(item.style, item.method)
               ? "rgba(0, 0, 0, 1)"

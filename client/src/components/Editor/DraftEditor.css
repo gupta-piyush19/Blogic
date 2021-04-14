@@ -22,13 +22,14 @@
   flex-basis: 1fr 1fr;
 }
 
-button {
+.toolbar-grid button {
   margin-right: 8px;
   font-size: 1rem;
   padding: 10px;
   border: none;
   background: #fff;
   cursor: pointer;
+  outline: none;
 }
 
 .superFancyBlockquote {
