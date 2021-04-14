@@ -28,6 +28,9 @@ const Navbar = () => {
   const guestLinks = (
     <>
       <li>
+        <Link to="/new">Editor</Link>
+      </li>
+      <li>
         <Link to="/register">Register</Link>
       </li>
       <li>

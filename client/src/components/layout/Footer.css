@@ -25,18 +25,16 @@ a {
   line-height: 30px;
   text-align: center;
   padding: 0.6rem;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 #main-footer .footer-content .social .fa-github:hover {
-  transform: scale(1.2);
   background: #fff;
   color: #333;
   border-color: steelblue;
 }
 
 #main-footer .footer-content .social .fa-linkedin:hover {
-  transform: scale(1.2);
   background: #fff;
   color: #0072b1;
   border-color: steelblue;
