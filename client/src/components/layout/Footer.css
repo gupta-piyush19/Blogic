@@ -2,7 +2,8 @@
   margin-top: auto;
   background: #333;
   color: #fff;
-  height: 5rem;
+  height: 3rem;
+  padding: 2.2rem 10rem;
 }
 
 a {
@@ -12,7 +13,7 @@ a {
 #main-footer .footer-content {
   display: flex;
   justify-content: space-between;
-  height: 5rem;
+  height: 100%;
   align-items: center;
 }
 
@@ -21,10 +22,10 @@ a {
   margin-right: 1rem;
   border: 2px #fff solid;
   border-radius: 50%;
-  width: 50px;
+  width: 45px;
   line-height: 30px;
   text-align: center;
-  padding: 0.6rem;
+  padding: 0.3rem;
   transition: all 0.2s ease-in-out;
 }
 

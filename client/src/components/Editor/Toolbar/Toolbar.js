@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAlignCenter,
@@ -131,6 +131,30 @@ const Toolbar = ({ editorState, setEditorState }) => {
     { label: "H4", style: "header-four", method: "block" },
     { label: "H5", style: "header-five", method: "block" },
     { label: "H6", style: "header-six", method: "block" },
+    // {
+    //   label: "FONT",
+    //   style: "FONT",
+    //   method: "inline",
+    //   icon: (
+    //     <select>
+    //       <option value="fontSize" selected disabled>
+    //         Font Size
+    //       </option>
+    //       <option value="24">24</option>
+    //       <option value="26">26</option>
+    //       <option value="28">28</option>
+    //       <option value="30">30</option>
+    //       <option value="32">32</option>
+    //       <option value="34">34</option>
+    //       <option value="36">36</option>
+    //       <option value="38">38</option>
+    //       <option value="40">40</option>
+    //       <option value="42">42</option>
+    //       <option value="44">44</option>
+    //       <option value="46">46</option>
+    //     </select>
+    //   ),
+    // },
   ];
 
   const applyStyle = (e, style, method) => {
@@ -156,21 +180,27 @@ const Toolbar = ({ editorState, setEditorState }) => {
 
   return (
     <div className="toolbar-grid">
-      {tools.map((item, idx) => (
-        <button
-          style={{
-            color: isActive(item.style, item.method)
-              ? "rgba(0, 0, 0, 1)"
-              : "rgba(0, 0, 0, 0.3)",
-          }}
-          key={`${item.label}-${idx}`}
-          title={item.label}
-          onClick={(e) => applyStyle(e, item.style, item.method)}
-          onMouseDown={(e) => e.preventDefault()}
-        >
-          {item.icon || item.label}
-        </button>
-      ))}
+      {tools.map(
+        (item, idx) => (
+          // item.label !== "FONT80" ? (
+          <button
+            style={{
+              color: isActive(item.style, item.method)
+                ? "rgba(0, 0, 0, 1)"
+                : "rgba(0, 0, 0, 0.3)",
+            }}
+            key={`${item.label}-${idx}`}
+            title={item.label}
+            onClick={(e) => applyStyle(e, item.style, item.method)}
+            onMouseDown={(e) => e.preventDefault()}
+          >
+            {item.icon || item.label}
+          </button>
+        )
+        // ) : (
+        //   item.icon
+        // )
+      )}
     </div>
   );
 };

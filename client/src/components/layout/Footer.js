@@ -4,7 +4,7 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <footer id="main-footer">
-      <div className="footer-content container">
+      <div className="footer-content ">
         <p>Copyright &copy; {new Date().getFullYear()}. All Rights Reserved</p>
         <div className="social">
           <a

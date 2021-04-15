@@ -6,6 +6,8 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import setAuthToken from "./utils/setAuthToken";
 import DraftEditor from "./components/Editor/DraftEditor";
+import ViewEditor from "./components/Editor/ViewEditor";
+import Home from "./components/Home";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -17,7 +19,7 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path="/">
-          <h1>BLOGIC</h1>
+          <Home />
         </Route>
         <Route exact path="/new">
           <DraftEditor />
@@ -32,6 +34,11 @@ function App() {
             <Login />
           </div>
         </Route>
+        <Route
+          exact
+          path="/view"
+          render={(props) => <ViewEditor {...props} />}
+        />
       </Switch>
       <Footer />
     </div>

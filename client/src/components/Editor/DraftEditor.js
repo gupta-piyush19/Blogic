@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import {
   Editor,
   EditorState,
@@ -7,10 +7,14 @@ import {
   convertFromRaw,
 } from "draft-js";
 import Toolbar from "./Toolbar/Toolbar";
-
+import BlogContext from "../../context/blog/blogContext";
 import "./DraftEditor.css";
+import { useHistory } from "react-router";
 
-const DraftEditor = () => {
+const DraftEditor = (props) => {
+  const history = useHistory();
+  const [title, setTitle] = useState("");
+  const [image, setImage] = useState("");
   const [editorState, setEditorState] = useState(
     EditorState.createWithContent(
       convertFromRaw({
@@ -55,6 +59,7 @@ const DraftEditor = () => {
     )
   );
   const editor = useRef(null);
+  const { createBlog } = useContext(BlogContext);
 
   useEffect(() => {
     focusEditor();
@@ -107,6 +112,9 @@ const DraftEditor = () => {
       verticalAlign: "sub",
       fontSize: "80%",
     },
+    // FONT80: {
+    //   fontSize: "80px",
+    // },
   };
 
   // FOR BLOCK LEVEL STYLES(Returns CSS Class From DraftEditor.css)
@@ -128,17 +136,51 @@ const DraftEditor = () => {
     }
   };
 
+  const saveHandler = () => {
+    const contentState = editorState.getCurrentContent();
+    createBlog({
+      title,
+      image,
+      body: JSON.stringify(convertToRaw(contentState)),
+    });
+  };
+
+  const viewHandler = () => {
+    const contentState = editorState.getCurrentContent();
+    const data = JSON.stringify(convertToRaw(contentState));
+    history.push({
+      pathname: "/view",
+      state: { editorState: data },
+    });
+  };
   return (
     <div className="container">
       <div className="title-input ">
-        <input type="text" name="title" placeholder="Enter Title" />
+        <input
+          type="text"
+          name="title"
+          placeholder="Enter Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <input
+          type="text"
+          name="image"
+          placeholder="Enter Image"
+          value={image}
+          onChange={(e) => setImage(e.target.value)}
+        />
       </div>
 
-      <div className="editor-wrapper" onClick={focusEditor}>
+      <div
+        className="editor-wrapper"
+        // onClick={focusEditor} preparing for font size feature(DropDown)
+      >
         <Toolbar editorState={editorState} setEditorState={setEditorState} />
         <div className="editor-container">
           <Editor
             ref={editor}
+            // readOnly
             placeholder="Write Here"
             handleKeyCommand={handleKeyCommand}
             editorState={editorState}
@@ -151,6 +193,8 @@ const DraftEditor = () => {
             }}
           />
         </div>
+        <button onClick={viewHandler}>View Blog</button>
+        <button onClick={saveHandler}>Save Blog</button>
       </div>
     </div>
   );
