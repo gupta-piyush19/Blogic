@@ -7,7 +7,8 @@ import Login from "./components/auth/Login";
 import setAuthToken from "./utils/setAuthToken";
 import DraftEditor from "./components/Editor/DraftEditor";
 import ViewEditor from "./components/Editor/ViewEditor";
-import Home from "./components/Home";
+import Home from "./components/Pages/Home";
+import Blogs from "./components/Pages/Blogs";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -20,6 +21,9 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route exact path="/blogs">
+          <Blogs />
         </Route>
         <Route exact path="/new">
           <DraftEditor />

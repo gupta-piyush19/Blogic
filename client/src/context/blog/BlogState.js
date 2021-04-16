@@ -11,6 +11,7 @@ import {
   UPDATE_BLOG,
   DELETE_BLOG,
   BLOG_ERROR,
+  CLEAR_BLOG,
 } from "../types";
 
 const BlogState = (props) => {
@@ -60,10 +61,26 @@ const BlogState = (props) => {
 
   const getBlog = async (id) => {
     try {
-      const blogs = await axios.get(`/api/blogs/${id}`);
+      const res = await axios.get(`/api/blogs/${id}`);
       dispatch({
         type: GET_BLOG,
-        payload: blogs.data.data,
+        payload: res.data.data.blog,
+      });
+      return res.data.data.blog;
+    } catch (err) {
+      dispatch({
+        type: BLOG_ERROR,
+        payload: err.response.data.message,
+      });
+    }
+  };
+
+  const getAllBlogsByUser = async (id) => {
+    try {
+      const res = await axios.get(`/api/blogs/by/${id}`);
+      dispatch({
+        type: GET_BLOGS_BY_USER,
+        payload: res.data.data.blogs,
       });
     } catch (err) {
       dispatch({
@@ -73,6 +90,19 @@ const BlogState = (props) => {
     }
   };
 
+  const deleteBlog = async (id) => {
+    try {
+      await axios.delete(`/api/blogs/${id}`);
+    } catch (err) {
+      dispatch({
+        type: BLOG_ERROR,
+        payload: err.response.data.message,
+      });
+    }
+  };
+  const clearBlog = () => {
+    dispatch({ type: CLEAR_BLOG });
+  };
   return (
     <BlogContext.Provider
       value={{
@@ -84,9 +114,10 @@ const BlogState = (props) => {
         createBlog,
         getBlog,
         getAllBlogs,
-        // getAllBlogsByUser,
+        getAllBlogsByUser,
         // updateBlog,
-        // deleteBlog,
+        deleteBlog,
+        clearBlog,
       }}
     >
       {props.children}

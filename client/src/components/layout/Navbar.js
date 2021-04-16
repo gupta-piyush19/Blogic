@@ -18,6 +18,13 @@ const Navbar = () => {
     <>
       <li className="temp-style">Hello {user && user.name}</li>
       <li>
+        <Link to="/blogs">Read Blogs</Link>
+      </li>
+
+      <li>
+        <Link to="/new">Create Blog</Link>
+      </li>
+      <li>
         <a href="/login" onClick={onLogout}>
           Logout
         </a>
@@ -28,8 +35,9 @@ const Navbar = () => {
   const guestLinks = (
     <>
       <li>
-        <Link to="/new">Editor</Link>
+        <Link to="/blogs">Read Blogs</Link>
       </li>
+
       <li>
         <Link to="/register">Register</Link>
       </li>

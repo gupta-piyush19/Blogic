@@ -143,16 +143,11 @@ const DraftEditor = (props) => {
       image,
       body: JSON.stringify(convertToRaw(contentState)),
     });
-  };
-
-  const viewHandler = () => {
-    const contentState = editorState.getCurrentContent();
-    const data = JSON.stringify(convertToRaw(contentState));
     history.push({
-      pathname: "/view",
-      state: { editorState: data },
+      pathname: "/blogs",
     });
   };
+
   return (
     <div className="container">
       <div className="title-input ">
@@ -186,14 +181,9 @@ const DraftEditor = (props) => {
             editorState={editorState}
             customStyleMap={styleMap}
             blockStyleFn={myBlockStyleFn}
-            onChange={(editorState) => {
-              const contentState = editorState.getCurrentContent();
-              console.log(convertToRaw(contentState));
-              setEditorState(editorState);
-            }}
+            onChange={(editorState) => setEditorState(editorState)}
           />
         </div>
-        <button onClick={viewHandler}>View Blog</button>
         <button onClick={saveHandler}>Save Blog</button>
       </div>
     </div>

@@ -15,3 +15,4 @@ export const GET_BLOGS_BY_USER = "GET_BLOGS_BY_USER";
 export const UPDATE_BLOG = "UPDATE_BLOG";
 export const DELETE_BLOG = "DELETE_BLOG";
 export const BLOG_ERROR = "BLOG_ERROR";
+export const CLEAR_BLOG = "CLEAR_BLOG";
