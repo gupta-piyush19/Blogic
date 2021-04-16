@@ -14,3 +14,29 @@
   flex: 1 0 auto;
   align-items: center;
 }
+
+.blogItem {
+  width: 70%;
+  display: flex;
+  margin: 1rem 0;
+  background: hsl(0, 0%, 95%);
+  /* cursor: pointer; */
+}
+
+.blogItem .info {
+  width: 80%;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.blogItem .info a {
+  color: rgb(25, 25, 250);
+  z-index: 2;
+}
+
+.blogItem img {
+  max-height: 134px;
+  min-width: 200px;
+}

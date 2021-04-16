@@ -20,7 +20,7 @@ const blogSchema = new mongoose.Schema({
     ref: "User",
   },
   createdAt: {
-    type: String,
+    type: Date,
     default: Date.now,
   },
 });

@@ -29,7 +29,14 @@ export default (state, action) => {
         blogs: action.payload,
         loading: false,
       };
-    case CLEAR_BLOG: {
+    case GET_BLOGS_BY_USER:
+      return {
+        ...state,
+        blogsByUser: action.payload,
+        loading: false,
+      };
+    case CLEAR_BLOG:
+    case DELETE_BLOG: {
       return {
         ...state,
         blogs: [],

@@ -5,7 +5,7 @@ import BlogContext from "../../context/blog/blogContext";
 const Home = () => {
   return (
     <div>
-      <h1> BLOGIC APP</h1>
+      <h1>🙂</h1>
     </div>
   );
 };

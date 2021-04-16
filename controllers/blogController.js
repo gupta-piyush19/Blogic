@@ -2,7 +2,7 @@ const Blog = require("../models/Blog");
 
 exports.getAllBlogs = async (req, res) => {
   try {
-    const blogs = await Blog.find({});
+    const blogs = await Blog.find().populate("owner");
     res.status(200).json({
       status: "success",
       results: blogs.length,
@@ -20,7 +20,7 @@ exports.getAllBlogs = async (req, res) => {
 
 exports.getBlogById = async (req, res) => {
   try {
-    const blog = await Blog.findById(req.params.blogId);
+    const blog = await Blog.findById(req.params.blogId).populate("owner");
     if (!blog) {
       return res.status(404).json({
         status: "fail",
@@ -97,7 +97,9 @@ exports.deleteBlog = async (req, res) => {
 
 exports.getAllBlogByUser = async (req, res) => {
   try {
-    const blogs = await Blog.find({ owner: req.params.userId });
+    const blogs = await Blog.find({ owner: req.params.userId }).populate(
+      "owner"
+    );
     res.status(200).json({
       status: "success",
       results: blogs.length,

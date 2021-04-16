@@ -25,7 +25,7 @@ function App() {
         <Route exact path="/blogs">
           <Blogs />
         </Route>
-        <Route exact path="/new">
+        <Route exact path="/blogs/new">
           <DraftEditor />
         </Route>
         <Route exact path="/register">
@@ -40,7 +40,7 @@ function App() {
         </Route>
         <Route
           exact
-          path="/view"
+          path="/blogs/view"
           render={(props) => <ViewEditor {...props} />}
         />
       </Switch>

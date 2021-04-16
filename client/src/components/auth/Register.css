@@ -19,6 +19,7 @@
   font-family: "Courier New", Courier, monospace;
   text-transform: uppercase;
   text-decoration: underline solid 2px red;
+  margin-bottom: 1rem;
 }
 
 .form-group {

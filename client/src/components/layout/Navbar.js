@@ -22,7 +22,7 @@ const Navbar = () => {
       </li>
 
       <li>
-        <Link to="/new">Create Blog</Link>
+        <Link to="/blogs/new">Create Blog</Link>
       </li>
       <li>
         <a href="/login" onClick={onLogout}>

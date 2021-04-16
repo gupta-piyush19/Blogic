@@ -93,6 +93,7 @@ const BlogState = (props) => {
   const deleteBlog = async (id) => {
     try {
       await axios.delete(`/api/blogs/${id}`);
+      dispatch({ type: DELETE_BLOG });
     } catch (err) {
       dispatch({
         type: BLOG_ERROR,
