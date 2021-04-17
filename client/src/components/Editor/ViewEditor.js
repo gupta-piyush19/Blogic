@@ -101,7 +101,7 @@ const ViewEditor = (props) => {
           customStyleMap={styleMap}
           blockStyleFn={myBlockStyleFn}
         />
-        {user && blog.owner === user._id && (
+        {user && blog.owner._id === user._id && (
           <button onClick={() => deleteHandler(blog._id)}>Delete Blog</button>
         )}
       </div>

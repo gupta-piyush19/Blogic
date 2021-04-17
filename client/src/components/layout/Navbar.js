@@ -55,7 +55,7 @@ const Navbar = () => {
             <Link
               to="/"
               style={{
-                fontSize: "3rem",
+                fontSize: "2.2rem",
                 textDecoration: "none",
                 fontFamily: '"Fira Mono"',
               }}

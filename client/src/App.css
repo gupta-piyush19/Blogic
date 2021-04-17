@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap");
 * {
   box-sizing: border-box;
 }
@@ -15,12 +16,15 @@
   align-items: center;
 }
 
+.my-3 {
+  margin: 3rem 0;
+}
+
 .blogItem {
-  width: 70%;
+  width: 90%;
   display: flex;
   margin: 1rem 0;
   background: hsl(0, 0%, 95%);
-  /* cursor: pointer; */
 }
 
 .blogItem .info {
@@ -37,6 +41,6 @@
 }
 
 .blogItem img {
-  max-height: 134px;
-  min-width: 200px;
+  max-height: 234px;
+  min-width: 300px;
 }

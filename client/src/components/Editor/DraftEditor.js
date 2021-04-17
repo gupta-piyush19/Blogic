@@ -13,6 +13,11 @@ import { useHistory } from "react-router";
 
 const DraftEditor = (props) => {
   const history = useHistory();
+
+  const imagePreview = useRef(null);
+  const imageInput = useRef(null);
+  // const uploadButton = useRef(null);
+
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [editorState, setEditorState] = useState(
@@ -136,6 +141,18 @@ const DraftEditor = (props) => {
     }
   };
 
+  const uploadImage = () => {
+    imageInput.current.click();
+  };
+
+  const preview = (image) => {
+    console.log(image);
+    const imageURL = URL.createObjectURL(image);
+    console.log(imageURL);
+    // uploadButton.current.background = `url(${imageURL})`;
+    imagePreview.current.src = imageURL;
+  };
+
   const saveHandler = () => {
     const contentState = editorState.getCurrentContent();
     createBlog({
@@ -150,41 +167,68 @@ const DraftEditor = (props) => {
 
   return (
     <div className="container">
-      <div className="title-input ">
+      <div className="my-3">
+        <div className="image">
+          <input
+            type="button"
+            className="button"
+            value="+"
+            // ref={uploadButton}
+            onClick={uploadImage}
+          />
+          <img
+            src=""
+            ref={imagePreview}
+            // style={{
+            //   width: "100px",
+            //   height: "100px",
+            // }}
+          />
+          <input
+            type="file"
+            name="image"
+            accept="image/*"
+            style={{ display: "none" }}
+            ref={imageInput}
+            placeholder="Enter Image"
+            value={image}
+            onChange={(e) => {
+              setImage(e.target.value);
+              preview(e.target.files[0]);
+            }}
+          />
+        </div>
         <input
           type="text"
           name="title"
+          className="title"
           placeholder="Enter Title"
+          autoComplete="off"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <input
-          type="text"
-          name="image"
-          placeholder="Enter Image"
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
-        />
-      </div>
 
-      <div
-        className="editor-wrapper"
-        // onClick={focusEditor} preparing for font size feature(DropDown)
-      >
-        <Toolbar editorState={editorState} setEditorState={setEditorState} />
-        <div className="editor-container">
-          <Editor
-            ref={editor}
-            // readOnly
-            placeholder="Write Here"
-            handleKeyCommand={handleKeyCommand}
-            editorState={editorState}
-            customStyleMap={styleMap}
-            blockStyleFn={myBlockStyleFn}
-            onChange={(editorState) => setEditorState(editorState)}
-          />
+        <div
+          className="editor-wrapper"
+          // onClick={focusEditor} preparing for font size feature(DropDown)
+        >
+          <Toolbar editorState={editorState} setEditorState={setEditorState} />
+          <div className="editor-container">
+            <Editor
+              ref={editor}
+              // readOnly
+              placeholder="Write Here"
+              handleKeyCommand={handleKeyCommand}
+              editorState={editorState}
+              customStyleMap={styleMap}
+              blockStyleFn={myBlockStyleFn}
+              onChange={(editorState) => setEditorState(editorState)}
+            />
+          </div>
         </div>
-        <button onClick={saveHandler}>Save Blog</button>
+        <button className="save-btn" onClick={saveHandler}>
+          Save Blog
+        </button>
       </div>
     </div>
   );
