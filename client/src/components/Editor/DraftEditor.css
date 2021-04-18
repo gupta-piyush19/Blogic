@@ -44,6 +44,10 @@
   font-family: "Montserrat", "fira-mond";
 }
 
+.title:focus {
+  border-color: hsl(207, 44%, 59%);
+}
+
 .title::placeholder {
   color: #999;
 }
@@ -53,10 +57,15 @@
   height: 5rem;
   outline: none;
   border: none;
-  background: hsla(210, 13%, 50%, 0.3);
+  background: hsl(0, 0%, 60%);
   color: #fff;
   cursor: pointer;
   font-size: 4rem;
+  border-radius: 0.5rem;
+}
+
+.image .button:hover {
+  background-color: hsl(0, 0%, 62%);
 }
 
 .superFancyBlockquote {
@@ -103,8 +112,15 @@
   outline: none;
   border-radius: 10px;
   color: #fff;
-  background: hsl(0, 0%, 0%, 0.8);
+  /* background: hsl(0, 0%, 0%, 0.8); */
+  background: darkgray;
   font-size: 1.4rem;
   font-family: "Montserrat", "fira-mond";
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.save-btn:hover {
+  background: grey;
+  transform: translateY(-5px);
 }
