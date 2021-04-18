@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import AuthContext from "../../context/auth/authContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
   const { isAuthenticated, user, loadUser, logout } = useContext(AuthContext);
@@ -16,14 +18,17 @@ const Navbar = () => {
 
   const authLinks = (
     <>
+      <li>
+        <Link
+          to="/blogs/new"
+          style={{
+            border: "none",
+          }}
+        >
+          <FontAwesomeIcon icon={faPlusSquare} />
+        </Link>
+      </li>
       <li className="temp-style">Hello {user && user.name}</li>
-      <li>
-        <Link to="/blogs">Read Blogs</Link>
-      </li>
-
-      <li>
-        <Link to="/blogs/new">Create Blog</Link>
-      </li>
       <li>
         <a href="/login" onClick={onLogout}>
           Logout
@@ -34,10 +39,6 @@ const Navbar = () => {
 
   const guestLinks = (
     <>
-      <li>
-        <Link to="/blogs">Read Blogs</Link>
-      </li>
-
       <li>
         <Link to="/register">Register</Link>
       </li>
