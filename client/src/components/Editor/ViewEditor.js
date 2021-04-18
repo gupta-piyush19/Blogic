@@ -3,6 +3,7 @@ import { Editor, convertFromRaw, EditorState } from "draft-js";
 import BlogContext from "../../context/blog/blogContext";
 import AuthContext from "../../context/auth/authContext";
 import { styleMap, myBlockStyleFn } from "./editorStyles";
+import "./viewEditor.css";
 
 const ViewEditor = (props) => {
   const { blog, getBlog, deleteBlog, clearBlog } = useContext(BlogContext);
@@ -35,22 +36,31 @@ const ViewEditor = (props) => {
 
   return (
     blog && (
-      <div className="container">
-        <h1>{blog.title}</h1>
-        {/* <div className="editor-wrapper"> */}
-        {/* <div className="editor-container"> */}
-        <Editor
-          readOnly
-          editorState={editorState}
-          customStyleMap={styleMap}
-          blockStyleFn={myBlockStyleFn}
-        />
-        {user && blog.owner._id === user._id && (
-          <button onClick={() => deleteHandler(blog._id)}>Delete Blog</button>
-        )}
+      <div className="view-blog">
+        <div className="container">
+          <h1 class="blogTitle">{blog.title}</h1>
+          <img src={blog.image} />
+          <div className="editor">
+            <Editor
+              readOnly
+              editorState={editorState}
+              customStyleMap={styleMap}
+              blockStyleFn={myBlockStyleFn}
+            />
+          </div>
+          {user && blog.owner._id === user._id && (
+            <div className="buttons">
+              <button className="edit-btn btn">Edit Blog</button>
+              <button
+                className="delete-btn btn"
+                onClick={() => deleteHandler(blog._id)}
+              >
+                Delete Blog
+              </button>
+            </div>
+          )}
+        </div>
       </div>
-      // </div>
-      // </div>
     )
   );
 };

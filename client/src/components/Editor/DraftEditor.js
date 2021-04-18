@@ -104,7 +104,7 @@ const DraftEditor = (props) => {
       body: JSON.stringify(convertToRaw(contentState)),
     });
     history.push({
-      pathname: "/blogs",
+      pathname: "/",
     });
   };
 
