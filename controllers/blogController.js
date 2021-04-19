@@ -44,7 +44,11 @@ exports.getBlogById = async (req, res) => {
 
 exports.createBlog = async (req, res) => {
   try {
-    const blog = await Blog.create({ ...req.body, owner: req.user._id });
+    const blog = await Blog.create({
+      ...req.body,
+      image: req.file.path.replace(/\\/g, "/"),
+      owner: req.user._id,
+    });
     res.status(200).json({
       status: "success",
       data: {

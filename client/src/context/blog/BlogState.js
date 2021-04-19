@@ -27,11 +27,15 @@ const BlogState = (props) => {
   const createBlog = async (blog) => {
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "multipart/form-data",
       },
     };
+    const formData = new FormData();
+    formData.append("title", blog.title);
+    formData.append("body", blog.body);
+    formData.append("image", blog.image);
     try {
-      const res = await axios.post("/api/blogs", blog, config);
+      const res = await axios.post("/api/blogs", formData, config);
       dispatch({
         type: CREATE_BLOG,
         payload: res.data.data.blog,

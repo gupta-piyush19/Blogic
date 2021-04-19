@@ -46,7 +46,7 @@ const ViewEditor = (props) => {
       <div className="view-blog">
         <div className="container">
           <h1 class="blogTitle">{blog.title}</h1>
-          <img src={blog.image} />
+          <img src={blog.image} alt="" />
           <div className="editor">
             <Editor
               readOnly

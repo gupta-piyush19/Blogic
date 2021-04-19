@@ -8,8 +8,9 @@ const {
   deleteBlog,
   getAllBlogByUser,
 } = require("../controllers/blogController");
-
 const { protect, isOwner } = require("../middlewares/authMiddleware");
+const multer = require("multer");
+const fs = require("fs");
 
 // @desc    Get all Blogs
 // @route   GET /api/blogs
@@ -21,10 +22,40 @@ router.get("/", getAllBlogs);
 // @access  public
 router.get("/:blogId", getBlogById);
 
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    fs.mkdir("./uploads/", (err) => {
+      cb(null, "./uploads/");
+    });
+  },
+  filename: function (req, file, cb) {
+    cb(null, new Date().toISOString().replace(/:/g, "-") + file.originalname);
+  },
+});
+
+const fileFilter = (req, file, cb) => {
+  if (
+    file.mimetype === "image/jpeg" ||
+    file.mimetype === "image/png" ||
+    file.mimetype === "image/jpg"
+  ) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 5 * 1024 * 1024,
+  },
+  fileFilter: fileFilter,
+});
 // @desc    Create a Blog
 // @route   POST /api/blogs
 // @access  private
-router.post("/", protect, createBlog);
+router.post("/", protect, upload.single("image"), createBlog);
 
 // @desc    Update Blog
 // @route   PATCH /api/blogs/:blogId

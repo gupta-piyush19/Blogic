@@ -136,7 +136,7 @@ const DraftEditor = (props) => {
             placeholder="Enter Image"
             value={image}
             onChange={(e) => {
-              setImage(e.target.value);
+              setImage(e.target.files[0]);
               preview(e.target.files[0]);
             }}
           />
