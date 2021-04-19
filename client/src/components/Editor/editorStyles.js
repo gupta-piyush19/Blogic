@@ -55,5 +55,3 @@ export const myBlockStyleFn = (contentBlock) => {
       break;
   }
 };
-
-// export default [styleMap, myBlockStyleFn];

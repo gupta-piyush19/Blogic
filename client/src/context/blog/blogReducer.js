@@ -42,6 +42,7 @@ export default (state, action) => {
         blogs: [],
         blog: null,
         error: null,
+        loading: false,
       };
     }
     case BLOG_ERROR:

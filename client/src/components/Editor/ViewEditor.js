@@ -26,11 +26,18 @@ const ViewEditor = (props) => {
     setEditorState(EditorState.createWithContent(data));
   }, []);
 
+  const editHandler = (id) => {
+    props.history.push({
+      pathname: "/blogs/edit",
+      search: `id=${id}`,
+    });
+  };
+
   const deleteHandler = (id) => {
     deleteBlog(id);
-
     props.history.push({
-      pathname: "/",
+      pathname: "/blogs/delete",
+      search: `id=${id}`,
     });
   };
 
@@ -50,7 +57,12 @@ const ViewEditor = (props) => {
           </div>
           {user && blog.owner._id === user._id && (
             <div className="buttons">
-              <button className="edit-btn btn">Edit Blog</button>
+              <button
+                className="edit-btn btn"
+                onClick={() => editHandler(blog._id)}
+              >
+                Edit Blog
+              </button>
               <button
                 className="delete-btn btn"
                 onClick={() => deleteHandler(blog._id)}
