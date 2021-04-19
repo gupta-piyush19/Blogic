@@ -4,7 +4,8 @@
 }
 
 .editor-wrapper {
-  width: 768px;
+  margin: auto;
+  width: 70%;
   border: 1px solid black;
   background: #fff;
   padding: 1rem;
@@ -34,7 +35,7 @@
 
 .title {
   display: block;
-  width: 100%;
+  width: 70%;
   margin: 2rem auto;
   height: 3rem;
   border: none;
@@ -53,7 +54,9 @@
 }
 
 .image .button {
-  width: 100%;
+  display: block;
+  margin: auto;
+  width: 70%;
   height: 5rem;
   outline: none;
   border: none;
@@ -64,6 +67,24 @@
   border-radius: 0.5rem;
 }
 
+.image img {
+  display: block;
+  margin: auto;
+  height: 60%;
+  width: 40%;
+}
+
+.image .deletebtn {
+  outline: none;
+  font-size: 1.2rem;
+  border: 2px #333 solid;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  top: -1.5rem;
+  right: 27%;
+}
 .image .button:hover {
   background-color: hsl(0, 0%, 62%);
 }

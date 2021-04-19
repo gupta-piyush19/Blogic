@@ -96,6 +96,11 @@ const DraftEditor = (props) => {
     imagePreview.current.src = imageURL;
   };
 
+  const clearImage = () => {
+    imagePreview.current.src = "";
+    setImage("");
+  };
+
   const saveHandler = () => {
     const contentState = editorState.getCurrentContent();
     createBlog({
@@ -109,69 +114,80 @@ const DraftEditor = (props) => {
   };
 
   return (
-    <div className="container">
-      <div className="my-3">
-        <div className="image">
-          <input
-            type="button"
-            className="button"
-            value="+"
-            // ref={uploadButton}
-            onClick={uploadImage}
-          />
-          <img
-            src=""
-            ref={imagePreview}
-            // style={{
-            //   width: "100px",
-            //   height: "100px",
-            // }}
-          />
-          <input
-            type="file"
-            name="image"
-            accept="image/*"
-            style={{ display: "none" }}
-            ref={imageInput}
-            placeholder="Enter Image"
-            value={image}
-            onChange={(e) => {
-              setImage(e.target.files[0]);
-              preview(e.target.files[0]);
-            }}
-          />
-        </div>
-        <input
-          type="text"
-          name="title"
-          className="title"
-          placeholder="Enter Title"
-          autoComplete="off"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-
-        <div
-          className="editor-wrapper"
-          // onClick={focusEditor} preparing for font size feature(DropDown)
-        >
-          <Toolbar editorState={editorState} setEditorState={setEditorState} />
-          <div className="editor-container">
-            <Editor
-              ref={editor}
-              // readOnly
-              placeholder="Write Here"
-              handleKeyCommand={handleKeyCommand}
-              editorState={editorState}
-              customStyleMap={styleMap}
-              blockStyleFn={myBlockStyleFn}
-              onChange={(editorState) => setEditorState(editorState)}
+    <div className="view">
+      <div className="container">
+        <div className="my-3">
+          <div className="image">
+            <input
+              type="button"
+              className="button"
+              value="+"
+              // ref={uploadButton}
+              onClick={uploadImage}
+            />
+            <div
+              className="preview-div"
+              style={{
+                position: "relative",
+                width: "70%",
+                margin: "2rem auto",
+              }}
+            >
+              <img src="" ref={imagePreview} />
+              {image && (
+                <span onClick={clearImage} className="deletebtn">
+                  ❌
+                </span>
+              )}
+            </div>
+            <input
+              type="file"
+              name="image"
+              accept="image/*"
+              style={{ display: "none" }}
+              ref={imageInput}
+              placeholder="Enter Image"
+              onChange={(e) => {
+                setImage(e.target.files[0]);
+                preview(e.target.files[0]);
+              }}
             />
           </div>
+          <input
+            type="text"
+            name="title"
+            className="title"
+            placeholder="Enter Title"
+            autoComplete="off"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+
+          <div
+            className="editor-wrapper"
+            // onClick={focusEditor} preparing for font size feature(DropDown)
+          >
+            <Toolbar
+              editorState={editorState}
+              setEditorState={setEditorState}
+            />
+            <div className="editor-container">
+              <Editor
+                ref={editor}
+                // readOnly
+                placeholder="Write Here"
+                handleKeyCommand={handleKeyCommand}
+                editorState={editorState}
+                customStyleMap={styleMap}
+                blockStyleFn={myBlockStyleFn}
+                onChange={(editorState) => setEditorState(editorState)}
+              />
+            </div>
+          </div>
+          <button className="save-btn" onClick={saveHandler}>
+            Save Blog
+          </button>
         </div>
-        <button className="save-btn" onClick={saveHandler}>
-          Save Blog
-        </button>
       </div>
     </div>
   );
