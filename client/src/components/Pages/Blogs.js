@@ -3,10 +3,11 @@ import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
 import BlogContext from "../../context/blog/blogContext";
+import Spinner from "../layout/Spinner";
 
 const Blogs = () => {
   const history = useHistory();
-  const { blogs, getAllBlogs } = useContext(BlogContext);
+  const { blogs, getAllBlogs, loading } = useContext(BlogContext);
   const months = [
     "Jan",
     "Feb",
@@ -40,27 +41,35 @@ const Blogs = () => {
       </p>
     );
   };
-  return (
-    <div>
-      <div className="container flex" style={{ marginTop: "2rem" }}>
-        {blogs &&
-          blogs.map((blog) => (
-            <div className="blogItem" key={blog._id}>
-              <div className="info">
-                <p>
-                  <Link to="/blogs/by">{blog.owner.name}</Link> wrote,
-                </p>
-                <div onClick={() => viewHandler(blog)}>
-                  <h1>{blog.title}</h1>
-                  {getDate(blog.createdAt)}
+  if (loading) {
+    return <Spinner />;
+  } else {
+    return (
+      <div>
+        <div className="container flex" style={{ marginTop: "2rem" }}>
+          {blogs &&
+            blogs.map((blog) => (
+              <div className="blogItem" key={blog._id}>
+                <div className="info">
+                  <p>
+                    <Link to="/blogs/by">{blog.owner.name}</Link> wrote,
+                  </p>
+                  <div onClick={() => viewHandler(blog)}>
+                    <h1>{blog.title}</h1>
+                    {getDate(blog.createdAt)}
+                  </div>
                 </div>
+                <img
+                  src={blog.image}
+                  alt=""
+                  onClick={() => viewHandler(blog)}
+                />
               </div>
-              <img src={blog.image} alt="" onClick={() => viewHandler(blog)} />
-            </div>
-          ))}
+            ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default Blogs;

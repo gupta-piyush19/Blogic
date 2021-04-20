@@ -7,6 +7,7 @@ import {
   DELETE_BLOG,
   BLOG_ERROR,
   CLEAR_BLOG,
+  SET_LOADING,
 } from "../types";
 
 export default (state, action) => {
@@ -42,13 +43,18 @@ export default (state, action) => {
         blogs: [],
         blog: null,
         error: null,
-        loading: false,
       };
     }
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
     case BLOG_ERROR:
       return {
         ...state,
         error: action.payload,
+        loading: true,
       };
     default:
       return state;

@@ -12,6 +12,7 @@ import {
   DELETE_BLOG,
   BLOG_ERROR,
   CLEAR_BLOG,
+  SET_LOADING,
 } from "../types";
 
 const BlogState = (props) => {
@@ -49,6 +50,7 @@ const BlogState = (props) => {
   };
 
   const getAllBlogs = async () => {
+    setLoading();
     try {
       const blogs = await axios.get("/api/blogs");
       dispatch({
@@ -64,6 +66,8 @@ const BlogState = (props) => {
   };
 
   const getBlog = async (id) => {
+    setLoading();
+
     try {
       const res = await axios.get(`/api/blogs/${id}`);
       dispatch({
@@ -80,6 +84,8 @@ const BlogState = (props) => {
   };
 
   const getAllBlogsByUser = async (id) => {
+    setLoading();
+
     try {
       const res = await axios.get(`/api/blogs/by/${id}`);
       dispatch({
@@ -105,6 +111,11 @@ const BlogState = (props) => {
       });
     }
   };
+
+  const setLoading = () => {
+    dispatch({ type: SET_LOADING });
+  };
+
   const clearBlog = () => {
     dispatch({ type: CLEAR_BLOG });
   };

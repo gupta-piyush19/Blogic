@@ -16,3 +16,4 @@ export const UPDATE_BLOG = "UPDATE_BLOG";
 export const DELETE_BLOG = "DELETE_BLOG";
 export const BLOG_ERROR = "BLOG_ERROR";
 export const CLEAR_BLOG = "CLEAR_BLOG";
+export const SET_LOADING = "SET_LOADING";

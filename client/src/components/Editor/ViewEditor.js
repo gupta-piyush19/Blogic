@@ -4,9 +4,12 @@ import BlogContext from "../../context/blog/blogContext";
 import AuthContext from "../../context/auth/authContext";
 import { styleMap, myBlockStyleFn } from "./editorStyles";
 import "./viewEditor.css";
+import Spinner from "../layout/Spinner";
 
 const ViewEditor = (props) => {
-  const { blog, getBlog, deleteBlog, clearBlog } = useContext(BlogContext);
+  const { blog, getBlog, deleteBlog, clearBlog, loading } = useContext(
+    BlogContext
+  );
   const { user } = useContext(AuthContext);
 
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -41,40 +44,44 @@ const ViewEditor = (props) => {
     });
   };
 
-  return (
-    blog && (
-      <div className="view-blog">
-        <div className="container">
-          <h1 class="blogTitle">{blog.title}</h1>
-          <img src={blog.image} alt="" />
-          <div className="editor">
-            <Editor
-              readOnly
-              editorState={editorState}
-              customStyleMap={styleMap}
-              blockStyleFn={myBlockStyleFn}
-            />
-          </div>
-          {user && blog.owner._id === user._id && (
-            <div className="buttons">
-              <button
-                className="edit-btn btn"
-                onClick={() => editHandler(blog._id)}
-              >
-                Edit Blog
-              </button>
-              <button
-                className="delete-btn btn"
-                onClick={() => deleteHandler(blog._id)}
-              >
-                Delete Blog
-              </button>
+  if (loading) {
+    return <Spinner />;
+  } else {
+    return (
+      blog && (
+        <div className="view-blog">
+          <div className="container">
+            <h1 class="blogTitle">{blog.title}</h1>
+            <img src={blog.image} alt="" />
+            <div className="editor">
+              <Editor
+                readOnly
+                editorState={editorState}
+                customStyleMap={styleMap}
+                blockStyleFn={myBlockStyleFn}
+              />
             </div>
-          )}
+            {user && blog.owner._id === user._id && (
+              <div className="buttons">
+                <button
+                  className="edit-btn btn"
+                  onClick={() => editHandler(blog._id)}
+                >
+                  Edit Blog
+                </button>
+                <button
+                  className="delete-btn btn"
+                  onClick={() => deleteHandler(blog._id)}
+                >
+                  Delete Blog
+                </button>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
-    )
-  );
+      )
+    );
+  }
 };
 
 export default ViewEditor;
