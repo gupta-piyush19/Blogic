@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 import AuthContext from "../../context/auth/authContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
+import { faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
   const { isAuthenticated, user, loadUser, logout } = useContext(AuthContext);
@@ -25,7 +25,13 @@ const Navbar = () => {
             border: "none",
           }}
         >
-          <FontAwesomeIcon icon={faPlusSquare} />
+          <FontAwesomeIcon
+            style={{
+              width: "28px",
+              height: "28px",
+            }}
+            icon={faPlusSquare}
+          />
         </Link>
       </li>
       <li className="temp-style">Hello {user && user.name}</li>

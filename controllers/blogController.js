@@ -65,9 +65,16 @@ exports.createBlog = async (req, res) => {
 
 exports.updateBlog = async (req, res) => {
   try {
-    const blog = await Blog.findByIdAndUpdate(req.params.blogId, req.body, {
-      new: true,
-    });
+    const blog = await Blog.findByIdAndUpdate(
+      req.params.blogId,
+      {
+        ...req.body,
+        image: req.file.path.replace(/\\/g, "/"),
+      },
+      {
+        new: true,
+      }
+    );
 
     res.status(200).json({
       status: "success",

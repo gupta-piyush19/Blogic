@@ -36,6 +36,12 @@ export default (state, action) => {
         blogsByUser: action.payload,
         loading: false,
       };
+    case UPDATE_BLOG:
+      return {
+        ...state,
+        blog: action.payload,
+        loading: false,
+      };
     case CLEAR_BLOG:
     case DELETE_BLOG: {
       return {

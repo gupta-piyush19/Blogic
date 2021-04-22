@@ -100,6 +100,31 @@ const BlogState = (props) => {
     }
   };
 
+  const updateBlog = async (id, blog) => {
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+    const formData = new FormData();
+    formData.append("title", blog.title);
+    formData.append("image", blog.image);
+    formData.append("body", blog.body);
+    try {
+      const res = await axios.patch(`/api/blogs/${id}`, formData, config);
+      dispatch({
+        type: UPDATE_BLOG,
+        payload: res.data.data.blog,
+      });
+    } catch (err) {
+      console.log(err);
+      dispatch({
+        type: BLOG_ERROR,
+        payload: err.response.data.message,
+      });
+    }
+  };
+
   const deleteBlog = async (id) => {
     try {
       await axios.delete(`/api/blogs/${id}`);
@@ -131,7 +156,7 @@ const BlogState = (props) => {
         getBlog,
         getAllBlogs,
         getAllBlogsByUser,
-        // updateBlog,
+        updateBlog,
         deleteBlog,
         clearBlog,
       }}

@@ -60,7 +60,7 @@ router.post("/", protect, upload.single("image"), createBlog);
 // @desc    Update Blog
 // @route   PATCH /api/blogs/:blogId
 // @access  private
-router.patch("/:blogId", protect, isOwner, updateBlog);
+router.patch("/:blogId", protect, isOwner, upload.single("image"), updateBlog);
 
 // @desc    Delete a Blog
 // @route   DELETE /api/blogs/:blogId

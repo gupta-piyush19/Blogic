@@ -9,6 +9,10 @@
   background: rgba(200, 10, 10, 0.9);
 }
 
+.alert-warning {
+  background: hsl(0, 90%, 51%);
+}
+
 .alert-primary {
   background-color: #00d84a;
 }
