@@ -1,0 +1,100 @@
+.edit-blog {
+  margin: 3rem auto;
+  padding: 1rem;
+}
+
+.edit-blog-header {
+  margin: 0 auto 1rem auto;
+  width: 70%;
+}
+
+.edit-blog-header .button {
+  display: block;
+  margin: auto;
+  width: 100%;
+  height: 5rem;
+  outline: none;
+  border: none;
+  background: hsl(0, 0%, 70%);
+  color: #fff;
+  cursor: pointer;
+  font-size: 4rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease-out;
+}
+
+.edit-blog-header .button:hover {
+  background: hsl(0, 0%, 50%);
+}
+
+.edit-blog-header .edit-title {
+  display: block;
+  margin: 2rem auto;
+  height: 3.8rem;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid hsl(0, 0%, 80%);
+  background: hsl(0, 0%, 70%);
+  outline: none;
+  font-size: 2.4rem;
+  font-family: "Montserrat", "fira-mond";
+  transition: all 0.1s ease-in-out;
+  padding-left: 0.5rem;
+}
+
+.edit-blog-header .edit-title:focus {
+  background: #fff;
+  border-color: hsl(207, 44%, 59%);
+}
+
+.edit-blog-header img {
+  height: 40%;
+  width: 100%;
+}
+.edit-blog-header span {
+  margin-top: 1rem;
+  display: block;
+  position: relative;
+}
+
+.cancel-btn {
+  position: absolute;
+  top: -1.6rem;
+  right: 0;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  border: 2px solid #333;
+  border-radius: 50%;
+  width: 3.2rem;
+  height: 3.2rem;
+  color: #fff;
+  background: hsl(0, 100%, 70%);
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+}
+
+.cancel-btn:hover {
+  background: hsl(0, 100%, 50%);
+}
+
+.edit-blog .update-btn {
+  display: block;
+  margin: 2rem auto 1rem auto;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.8rem;
+  color: #333;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: hsl(265, 70%, 85%);
+  border-radius: 0.5rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.edit-blog .update-btn:hover {
+  color: #fff;
+  background: hsl(265, 70%, 50%);
+  transform: translateY(-0.4rem);
+}

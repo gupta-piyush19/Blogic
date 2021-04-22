@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import {
   Editor,
   EditorState,
@@ -12,11 +12,32 @@ import { styleMap, myBlockStyleFn, handleKeyCommand } from "./editorStyles";
 import AuthContext from "../../context/auth/authContext";
 import BlogContext from "../../context/blog/blogContext";
 import Spinner from "../layout/Spinner";
+import "./EditEditor.css";
 
 const EditEditor = (props) => {
+  const [title, setTitle] = useState("");
+  const [image, setImage] = useState("");
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const { user, isAuthenticated } = useContext(AuthContext);
   const { blog, loading, getBlog } = useContext(BlogContext);
+
+  const preview = useRef("");
+  const uploadButton = useRef("");
+
+  const uploadImage = () => {
+    uploadButton.current.click();
+  };
+  const previewImage = (image) => {
+    const imageUrl = URL.createObjectURL(image);
+    preview.current.src = imageUrl;
+  };
+
+  const handleImage = () => {
+    preview.current.src = "";
+    setImage("");
+  };
+
+  const updateHandler = () => {};
 
   useEffect(async () => {
     const queryParams = new URLSearchParams(props.location.search);
@@ -30,6 +51,8 @@ const EditEditor = (props) => {
     const body = JSON.parse(blog1.body);
     const data = convertFromRaw(body);
     setEditorState(EditorState.createWithContent(data));
+    setTitle(blog1.title);
+    setImage(blog1.image);
   }, []);
 
   const handleKeyCommand = (command) => {
@@ -61,25 +84,73 @@ const EditEditor = (props) => {
   } else {
     return (
       <div className="container">
-        {isAuthenticated && (
-          <>
-            <div className="editor-wrapper">
-              <Toolbar
+        <div className="edit-blog">
+          <div className="edit-blog-header">
+            <input
+              type="text"
+              name="title"
+              className="edit-title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <span>
+              {!image && (
+                <>
+                  <input
+                    type="button"
+                    className="button"
+                    value="+"
+                    onClick={uploadImage}
+                  />
+                  <input
+                    type="file"
+                    name="image button"
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    ref={uploadButton}
+                    onChange={(e) => {
+                      setImage(e.target.files[0]);
+                      previewImage(e.target.files[0]);
+                    }}
+                  />
+                </>
+              )}
+
+              <img src={blog.image} ref={preview} />
+              {image && (
+                <button className="cancel-btn" onClick={handleImage}>
+                  ✖
+                </button>
+              )}
+            </span>
+          </div>
+          <div className="editor-wrapper">
+            <Toolbar
+              editorState={editorState}
+              setEditorState={setEditorState}
+            />
+            <div
+              className="editor-container"
+              style={{
+                fontFamily:
+                  '"charter", "Georgia", "Cambria", "Times New Roman", "Times", "serif"',
+                lineHeight: 2,
+                fontSize: "18px",
+              }}
+            >
+              <Editor
+                handleKeyCommand={handleKeyCommand}
                 editorState={editorState}
-                setEditorState={setEditorState}
+                customStyleMap={styleMap}
+                blockStyleFn={myBlockStyleFn}
+                onChange={(editorState) => setEditorState(editorState)}
               />
-              <div className="editor-container">
-                <Editor
-                  handleKeyCommand={handleKeyCommand}
-                  editorState={editorState}
-                  customStyleMap={styleMap}
-                  blockStyleFn={myBlockStyleFn}
-                  onChange={(editorState) => setEditorState(editorState)}
-                />
-              </div>
             </div>
-          </>
-        )}
+          </div>
+          <button className="update-btn btn" onClick={updateHandler}>
+            Update Blog📝
+          </button>
+        </div>
       </div>
     );
   }

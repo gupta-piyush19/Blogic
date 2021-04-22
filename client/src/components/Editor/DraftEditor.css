@@ -37,11 +37,11 @@
   display: block;
   width: 70%;
   margin: 2rem auto;
-  height: 3rem;
+  height: 3.6rem;
   border: none;
   border-bottom: 2px solid hsl(0, 0%, 80%);
   outline: none;
-  font-size: 2rem;
+  font-size: 2.4rem;
   font-family: "Montserrat", "fira-mond";
 }
 

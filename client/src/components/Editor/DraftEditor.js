@@ -89,10 +89,7 @@ const DraftEditor = (props) => {
   };
 
   const preview = (image) => {
-    console.log(image);
     const imageURL = URL.createObjectURL(image);
-    console.log(imageURL);
-    // uploadButton.current.background = `url(${imageURL})`;
     imagePreview.current.src = imageURL;
   };
 
@@ -185,7 +182,7 @@ const DraftEditor = (props) => {
             </div>
           </div>
           <button className="save-btn" onClick={saveHandler}>
-            Save Blog
+            Save Blog💾
           </button>
         </div>
       </div>
