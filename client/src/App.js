@@ -7,10 +7,11 @@ import Login from "./components/auth/Login";
 import setAuthToken from "./utils/setAuthToken";
 import DraftEditor from "./components/Editor/DraftEditor";
 import ViewEditor from "./components/Editor/ViewEditor";
-import Blogs from "./components/Pages/Blogs";
+import Home from "./components/Pages/Home";
 import EditEditor from "./components/Editor/EditEditor";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import Delete from "./components/Pages/Delete";
+import UserBlogs from "./components/Pages/UserBlogs";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -32,8 +33,13 @@ function App() {
           </div>
         </Route>
         <Route exact path="/">
-          <Blogs />
+          <Home />
         </Route>
+        <Route
+          exact
+          path="/blogs/user"
+          render={(props) => <UserBlogs {...props} />}
+        />
         <PrivateRoute exact path="/blogs/new" component={DraftEditor} />
         <Route
           exact

@@ -115,13 +115,15 @@ const DraftEditor = (props) => {
       <div className="container">
         <div className="my-3">
           <div className="image">
-            <input
-              type="button"
-              className="button"
-              value="+"
-              // ref={uploadButton}
-              onClick={uploadImage}
-            />
+            {!image && (
+              <input
+                type="button"
+                className="button"
+                value="+"
+                // ref={uploadButton}
+                onClick={uploadImage}
+              />
+            )}
             <div
               className="preview-div"
               style={{

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import BlogContext from "../../context/blog/blogContext";
 import Spinner from "../layout/Spinner";
 
-const Blogs = () => {
+const Home = () => {
   const history = useHistory();
   const { blogs, getAllBlogs, loading } = useContext(BlogContext);
   const months = [
@@ -25,6 +25,13 @@ const Blogs = () => {
   useEffect(() => {
     getAllBlogs();
   }, []);
+
+  const redirectHandler = (id) => {
+    history.push({
+      pathname: "/blogs/user",
+      search: `id=${id}`,
+    });
+  };
 
   const viewHandler = (blog) => {
     history.push({
@@ -52,7 +59,10 @@ const Blogs = () => {
               <div className="blogItem" key={blog._id}>
                 <div className="info">
                   <p>
-                    <Link to="/blogs/by">{blog.owner.name}</Link> wrote,
+                    <span onClick={() => redirectHandler(blog.owner._id)}>
+                      {blog.owner.name}
+                    </span>{" "}
+                    wrote,
                   </p>
                   <div onClick={() => viewHandler(blog)}>
                     <h1>{blog.title}</h1>
@@ -72,4 +82,4 @@ const Blogs = () => {
   }
 };
 
-export default Blogs;
+export default Home;

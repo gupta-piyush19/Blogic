@@ -15,6 +15,37 @@
   height: 40%;
 }
 
+.owner {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.owner-icon {
+  font-size: 2.4rem;
+  margin-right: 1rem;
+}
+
+.owner-name {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  background: hsl(160, 70%, 37%);
+  color: hsl(0, 0%, 100%);
+  padding: 0.3rem 1rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.left-icon {
+  margin-left: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.owner-name:hover .left-icon {
+  margin-left: 48px;
+}
+
 .view-blog .editor {
   font-size: 21px;
   font-family: charter, Georgia, Cambria, "Times New Roman", Times, serif;
