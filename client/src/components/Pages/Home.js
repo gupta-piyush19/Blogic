@@ -1,9 +1,14 @@
 import React, { useContext, useEffect } from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
-
+import "./BlogItem.css";
 import BlogContext from "../../context/blog/blogContext";
 import Spinner from "../layout/Spinner";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowRight,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Home = () => {
   const history = useHistory();
@@ -56,24 +61,33 @@ const Home = () => {
         <div className="container flex" style={{ marginTop: "2rem" }}>
           {blogs &&
             blogs.map((blog) => (
-              <div className="blogItem" key={blog._id}>
-                <div className="info">
-                  <p>
-                    <span onClick={() => redirectHandler(blog.owner._id)}>
-                      {blog.owner.name}
-                    </span>{" "}
-                    wrote,
-                  </p>
-                  <div onClick={() => viewHandler(blog)}>
-                    <h1>{blog.title}</h1>
-                    {getDate(blog.createdAt)}
+              <div className="blog-item" key={blog._id}>
+                <div className="blog-item-content">
+                  <div className="info">
+                    <div onClick={() => viewHandler(blog)}>
+                      <h1>{blog.title}</h1>
+                    </div>
+                    <div>{getDate(blog.createdAt)}</div>
+                    <div>
+                      By{" "}
+                      <span onClick={() => redirectHandler(blog.owner._id)}>
+                        {blog.owner.name}
+                      </span>{" "}
+                    </div>
+                    <button
+                      onClick={() => viewHandler(blog)}
+                      className="read-more-btn"
+                    >
+                      Read More <FontAwesomeIcon icon={faArrowRight} />
+                      <FontAwesomeIcon icon={faChevronRight} />
+                    </button>
                   </div>
+                  <div
+                    className="img"
+                    style={{ backgroundImage: `url(${blog.image})` }}
+                    onClick={() => viewHandler(blog)}
+                  />
                 </div>
-                <img
-                  src={blog.image}
-                  alt=""
-                  onClick={() => viewHandler(blog)}
-                />
               </div>
             ))}
         </div>

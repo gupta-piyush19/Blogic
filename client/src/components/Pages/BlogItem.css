@@ -1,0 +1,99 @@
+.blog-item {
+  width: 80%;
+  margin: 1rem 0;
+  padding: 1rem 1.8rem;
+  border: 2px solid #333;
+  background: hsl(0, 0%, 95%);
+  border-radius: 0.5rem;
+}
+
+.blog-item-content {
+  /* display: grid;
+  grid-template-columns: 4fr 1fr; */
+  display: flex;
+}
+
+.blog-item-content .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-transform: capitalize;
+  font-family: "Montserrat";
+  width: 80%;
+}
+
+.blog-item-content .info h1:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.blog-item .blog-item-content div {
+  margin: 5px 0;
+}
+
+.blog-item .blog-item-content div span {
+  text-transform: uppercase;
+  background: hsl(120, 50%, 40%);
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.5rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.blog-item .blog-item-content div span:hover {
+  background: hsl(120, 50%, 48%);
+  text-decoration: underline;
+}
+
+.read-more-btn {
+  margin-top: 10px;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background: grey;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.read-more-btn:hover {
+  transform: scaleX(1.1);
+}
+
+.blog-item-content .img {
+  height: 164px;
+  width: 240px;
+  background: center center/cover;
+  border: 1px grey solid;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .blog-item-content .info h1 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 650px) {
+  .blog-item-content {
+    align-items: center;
+    flex-direction: column-reverse;
+  }
+  .blog-item-content .info {
+    text-align: center;
+    align-items: center;
+  }
+  .blog-item-content .info h1 {
+    font-size: 1.1rem;
+  }
+  .read-more-btn {
+    transform: scale(0.8);
+  }
+  .blog-item .blog-item-content div span {
+    font-size: 15px;
+  }
+}

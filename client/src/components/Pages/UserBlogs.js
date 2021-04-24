@@ -4,6 +4,11 @@ import { Link } from "react-router-dom";
 
 import BlogContext from "../../context/blog/blogContext";
 import Spinner from "../layout/Spinner";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowRight,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 const UserBlogs = (props) => {
   const history = useHistory();
@@ -57,18 +62,30 @@ const UserBlogs = (props) => {
         <div className="container flex" style={{ marginTop: "2rem" }}>
           {blogsByUser &&
             blogsByUser.map((blog) => (
-              <div className="blogItem" key={blog._id}>
-                <div className="info">
-                  <div onClick={() => viewHandler(blog)}>
-                    <h1>{blog.title}</h1>
-                    {getDate(blog.createdAt)}
+              <div className="blog-item" key={blog._id}>
+                <div className="blog-item-content">
+                  <div className="info">
+                    <div onClick={() => viewHandler(blog)}>
+                      <h1>{blog.title}</h1>
+                    </div>
+                    <div>{getDate(blog.createdAt)}</div>
+                    <button
+                      onClick={() => viewHandler(blog)}
+                      className="read-more-btn"
+                    >
+                      Read More <FontAwesomeIcon icon={faArrowRight} />
+                      <FontAwesomeIcon icon={faChevronRight} />
+                    </button>
                   </div>
+
+                  <div
+                    className="img"
+                    style={{ backgroundImage: `url(${blog.image})` }}
+                    onClick={() => viewHandler(blog)}
+                  />
                 </div>
-                <img
-                  src={blog.image}
-                  alt=""
-                  onClick={() => viewHandler(blog)}
-                />
+
+                {/* </div> */}
               </div>
             ))}
         </div>

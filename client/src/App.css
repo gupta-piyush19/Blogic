@@ -19,28 +19,3 @@
 .my-3 {
   margin: 3rem 0;
 }
-
-.blogItem {
-  width: 90%;
-  display: flex;
-  margin: 1rem 0;
-  background: hsl(0, 0%, 95%);
-}
-
-.blogItem .info {
-  width: 80%;
-  padding: 1rem 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.blogItem .info a {
-  color: rgb(25, 25, 250);
-  z-index: 2;
-}
-
-.blogItem img {
-  max-height: 234px;
-  min-width: 300px;
-}
