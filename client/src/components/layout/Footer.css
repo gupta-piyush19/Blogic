@@ -2,8 +2,7 @@
   margin-top: auto;
   background: #333;
   color: #fff;
-  height: 2.8rem;
-  padding: 2.2rem 10rem;
+  padding: 0.5rem 0 0.5rem 0;
 }
 
 a {
@@ -13,7 +12,6 @@ a {
 #main-footer .footer-content {
   display: flex;
   justify-content: space-between;
-  height: 100%;
   align-items: center;
 }
 
@@ -39,4 +37,24 @@ a {
   background: #fff;
   color: #0072b1;
   border-color: steelblue;
+}
+
+@media (max-width: 768px) {
+  #main-footer .footer-content {
+    justify-content: space-around;
+    flex-direction: column;
+  }
+  .footer-copyright {
+    margin: 0.5rem 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .footer-copyright {
+    font-size: 14px;
+    margin: 0.5rem 0;
+  }
+  #main-footer .footer-content .social .fab {
+    transform: scale(0.8);
+  }
 }

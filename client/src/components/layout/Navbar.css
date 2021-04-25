@@ -1,13 +1,14 @@
 .navbar {
   background: hsl(259, 6%, 39%);
   color: #fff;
-  height: 70px;
+  padding: 0.5rem 0;
+  /* height: 70px; */
 }
 
 .container {
   max-width: 1100px;
   margin: auto;
-  /* padding: 0 40px; */
+  padding: 0 40px;
   height: 100%;
 }
 
@@ -50,4 +51,10 @@
 
 .navbar-content .links a:hover {
   border-color: #ccc;
+}
+
+@media (max-width: 650px) {
+  .navbar-content {
+    flex-direction: column;
+  }
 }
