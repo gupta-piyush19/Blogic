@@ -1,4 +1,5 @@
 const Blog = require("../models/Blog");
+const fs = require("fs");
 
 exports.getAllBlogs = async (req, res) => {
   try {
@@ -65,14 +66,28 @@ exports.createBlog = async (req, res) => {
 
 exports.updateBlog = async (req, res) => {
   try {
-    const updatedBlog = req.file
-      ? {
-          ...req.body,
-          image: req.file.path.replace(/\\/g, "/"),
-        }
-      : {
-          ...req.body,
-        };
+    let updatedBlog;
+    if (req.file) {
+      const updatingBlog = await Blog.findById(req.params.blogId);
+      if (!updatingBlog) {
+        return res.status(404).json({
+          status: "fail",
+          message: "Blog does not exist",
+        });
+      }
+      await fs.unlink(`./${updatingBlog.image}`, (err) => {
+        if (err) throw err;
+      });
+
+      updatedBlog = {
+        ...req.body,
+        image: req.file.path.replace(/\\/g, "/"),
+      };
+    } else {
+      updatedBlog = {
+        ...req.body,
+      };
+    }
     const blog = await Blog.findByIdAndUpdate(req.params.blogId, updatedBlog, {
       new: true,
     });
@@ -93,7 +108,18 @@ exports.updateBlog = async (req, res) => {
 
 exports.deleteBlog = async (req, res) => {
   try {
-    await Blog.findByIdAndDelete(req.params.blogId);
+    const deletingBlog = await Blog.findById(req.params.blogId);
+    if (!deletingBlog) {
+      return res.status(404).json({
+        status: "fail",
+        message: "Blog does not exist",
+      });
+    }
+    await fs.unlink(`./${deletingBlog.image}`, (err) => {
+      if (err) throw err;
+    });
+
+    deletingBlog.delete();
 
     res.status(200).json({
       status: "success",

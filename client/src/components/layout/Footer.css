@@ -2,7 +2,7 @@
   margin-top: auto;
   background: #333;
   color: #fff;
-  padding: 0.5rem 0 0.5rem 0;
+  padding: 0.6rem 0;
 }
 
 a {
@@ -16,14 +16,14 @@ a {
 }
 
 #main-footer .footer-content .social .fab {
-  font-size: 25px;
+  font-size: 20px;
   margin-right: 1rem;
   border: 2px #fff solid;
   border-radius: 50%;
-  width: 45px;
+  width: 40px;
   line-height: 30px;
   text-align: center;
-  padding: 0.3rem;
+  padding: 0.2rem;
   transition: all 0.2s ease-in-out;
 }
 
