@@ -47,14 +47,15 @@
   border-color: hsl(207, 44%, 59%);
 }
 
-.edit-blog-header img {
-  height: 40%;
-  width: 100%;
-}
 .edit-blog-header span {
   margin-top: 1rem;
   display: block;
   position: relative;
+}
+
+.edit-blog-header img {
+  height: 40%;
+  width: 100%;
 }
 
 .cancel-btn {

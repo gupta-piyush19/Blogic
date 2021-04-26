@@ -3,9 +3,78 @@
   box-sizing: border-box;
 }
 
+.create-blog {
+  margin: 3rem auto;
+  padding: 1rem;
+}
+
+.create-blog-header {
+  margin: 0 auto 1rem auto;
+  width: 80%;
+}
+
+.create-blog-header span {
+  margin-top: 1rem;
+  text-align: center;
+  padding: auto;
+  display: block;
+  position: relative;
+}
+
+.create-blog-header img {
+  height: 40%;
+  width: 100%;
+}
+
+.title {
+  display: block;
+  width: 100%;
+  margin: 2rem auto;
+  height: 3.6rem;
+  border: none;
+  border-bottom: 2px solid hsl(0, 0%, 80%);
+  outline: none;
+  font-size: 2.4rem;
+  font-family: "Montserrat", "fira-mond";
+}
+
+.title:focus {
+  border-color: hsl(207, 44%, 59%);
+}
+
+.title::placeholder {
+  color: #999;
+}
+
+.create-blog-header .button {
+  display: block;
+  margin: auto;
+  width: 100%;
+  height: 5rem;
+  outline: none;
+  border: none;
+  background: hsl(0, 0%, 60%);
+  color: #fff;
+  cursor: pointer;
+  font-size: 4rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease-out;
+}
+
+.create-blog-header .button:hover {
+  background: hsl(0, 0%, 50%);
+}
+
+.image img {
+  display: block;
+  margin: auto;
+  height: 60%;
+  width: 40%;
+}
+
 .editor-wrapper {
   margin: auto;
-  width: 70%;
+  width: 80%;
   border: 1px solid black;
   background: #fff;
   padding: 1rem;
@@ -31,62 +100,6 @@
   background: #fff;
   cursor: pointer;
   outline: none;
-}
-
-.title {
-  display: block;
-  width: 70%;
-  margin: 2rem auto;
-  height: 3.6rem;
-  border: none;
-  border-bottom: 2px solid hsl(0, 0%, 80%);
-  outline: none;
-  font-size: 2.4rem;
-  font-family: "Montserrat", "fira-mond";
-}
-
-.title:focus {
-  border-color: hsl(207, 44%, 59%);
-}
-
-.title::placeholder {
-  color: #999;
-}
-
-.image .button {
-  display: block;
-  margin: auto;
-  width: 70%;
-  height: 5rem;
-  outline: none;
-  border: none;
-  background: hsl(0, 0%, 60%);
-  color: #fff;
-  cursor: pointer;
-  font-size: 4rem;
-  border-radius: 0.5rem;
-}
-
-.image img {
-  display: block;
-  margin: auto;
-  height: 60%;
-  width: 40%;
-}
-
-.image .deletebtn {
-  outline: none;
-  font-size: 1.2rem;
-  border: 2px #333 solid;
-  padding: 0.5rem;
-  cursor: pointer;
-  border-radius: 50%;
-  position: absolute;
-  top: -1.5rem;
-  right: 27%;
-}
-.image .button:hover {
-  background-color: hsl(0, 0%, 62%);
 }
 
 .superFancyBlockquote {

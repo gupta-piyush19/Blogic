@@ -17,7 +17,6 @@ const DraftEditor = (props) => {
 
   const imagePreview = useRef(null);
   const imageInput = useRef(null);
-  // const uploadButton = useRef(null);
 
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
@@ -111,34 +110,18 @@ const DraftEditor = (props) => {
   };
 
   return (
-    <div className="view">
-      <div className="container">
-        <div className="my-3">
-          <div className="image">
+    <div className="container">
+      <div className="create-blog my-3">
+        <div className="create-blog-header">
+          <span>
             {!image && (
               <input
                 type="button"
                 className="button"
                 value="+"
-                // ref={uploadButton}
                 onClick={uploadImage}
               />
             )}
-            <div
-              className="preview-div"
-              style={{
-                position: "relative",
-                width: "70%",
-                margin: "2rem auto",
-              }}
-            >
-              <img src="" ref={imagePreview} />
-              {image && (
-                <span onClick={clearImage} className="deletebtn">
-                  ❌
-                </span>
-              )}
-            </div>
             <input
               type="file"
               name="image"
@@ -151,7 +134,13 @@ const DraftEditor = (props) => {
                 preview(e.target.files[0]);
               }}
             />
-          </div>
+            <img src="" ref={imagePreview} />
+            {image && (
+              <button className="cancel-btn" onClick={clearImage}>
+                ✖
+              </button>
+            )}
+          </span>
           <input
             type="text"
             name="title"
@@ -161,32 +150,36 @@ const DraftEditor = (props) => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-
-          <div
-            className="editor-wrapper"
-            // onClick={focusEditor} preparing for font size feature(DropDown)
-          >
-            <Toolbar
-              editorState={editorState}
-              setEditorState={setEditorState}
-            />
-            <div className="editor-container">
-              <Editor
-                ref={editor}
-                // readOnly
-                placeholder="Write Here"
-                handleKeyCommand={handleKeyCommand}
-                editorState={editorState}
-                customStyleMap={styleMap}
-                blockStyleFn={myBlockStyleFn}
-                onChange={(editorState) => setEditorState(editorState)}
-              />
-            </div>
-          </div>
-          <button className="save-btn" onClick={saveHandler}>
-            Save Blog💾
-          </button>
         </div>
+        <div
+          className="editor-wrapper"
+          // onClick={focusEditor} preparing for font size feature(DropDown)
+        >
+          <Toolbar editorState={editorState} setEditorState={setEditorState} />
+          <div
+            className="editor-container"
+            style={{
+              fontFamily:
+                '"charter", "Georgia", "Cambria", "Times New Roman", "Times", "serif"',
+              lineHeight: 2,
+              fontSize: "18px",
+            }}
+          >
+            <Editor
+              ref={editor}
+              // readOnly
+              placeholder="Write Here"
+              handleKeyCommand={handleKeyCommand}
+              editorState={editorState}
+              customStyleMap={styleMap}
+              blockStyleFn={myBlockStyleFn}
+              onChange={(editorState) => setEditorState(editorState)}
+            />
+          </div>
+        </div>
+        <button className="save-btn" onClick={saveHandler}>
+          Save Blog💾
+        </button>
       </div>
     </div>
   );
