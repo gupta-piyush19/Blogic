@@ -13,8 +13,6 @@ app.use("/api/blogs", require("./routes/blogRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("*/uploads", express.static("uploads"));
 
-// Default Route
-
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 

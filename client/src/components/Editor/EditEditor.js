@@ -94,7 +94,6 @@ const EditEditor = (props) => {
       </div>
     );
   } else if (blog && user && user._id !== blog.owner._id) {
-    // user._id !== blog.owner._id
     setTimeout(() => props.history.push("/"), 3000);
     return (
       <div className="container">
