@@ -7,12 +7,16 @@ import {
   convertFromRaw,
 } from "draft-js";
 import Toolbar from "./Toolbar/Toolbar";
+import AlertContext from "../../context/alert/alertContext";
 import BlogContext from "../../context/blog/blogContext";
 import "./DraftEditor.css";
 import { useHistory } from "react-router";
 import { styleMap, myBlockStyleFn } from "./editorStyles";
+import Alert from "../layout/Alert";
 
 const DraftEditor = (props) => {
+  const { createBlog } = useContext(BlogContext);
+  const { setAlert } = useContext(AlertContext);
   const history = useHistory();
 
   const imagePreview = useRef(null);
@@ -64,7 +68,6 @@ const DraftEditor = (props) => {
     )
   );
   const editor = useRef(null);
-  const { createBlog } = useContext(BlogContext);
 
   useEffect(() => {
     focusEditor();
@@ -98,20 +101,25 @@ const DraftEditor = (props) => {
   };
 
   const saveHandler = () => {
-    const contentState = editorState.getCurrentContent();
-    createBlog({
-      title,
-      image,
-      body: JSON.stringify(convertToRaw(contentState)),
-    });
-    history.push({
-      pathname: "/",
-    });
+    if (title === "" || image === "") {
+      setAlert("Please fill all the fields", "warning");
+    } else {
+      const contentState = editorState.getCurrentContent();
+      createBlog({
+        title,
+        image,
+        body: JSON.stringify(convertToRaw(contentState)),
+      });
+      history.push({
+        pathname: "/",
+      });
+    }
   };
 
   return (
     <div className="container">
       <div className="create-blog my-3">
+        <Alert />
         <div className="create-blog-header">
           <span>
             {!image && (
