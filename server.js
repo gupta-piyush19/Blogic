@@ -14,9 +14,14 @@ app.use("/api/users", require("./routes/userRoutes"));
 app.use("*/uploads", express.static("uploads"));
 
 // Default Route
-app.get("*", (req, res) => {
-  res.send("Hello from API");
-});
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => console.log(`Server is Running at Port: ${PORT}`));

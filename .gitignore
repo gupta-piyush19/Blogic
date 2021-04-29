@@ -2,4 +2,3 @@ node_modules
 
 # Config File
 *.env
-uploads/*
