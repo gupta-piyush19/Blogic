@@ -8,8 +8,6 @@
 }
 
 .blog-item-content {
-  /* display: grid;
-  grid-template-columns: 4fr 1fr; */
   display: flex;
 }
 
@@ -23,8 +21,11 @@
   width: 80%;
 }
 
+.blog-item-content .info h1 {
+  font-size: 1.7rem;
+}
 .blog-item-content .info h1:hover {
-  text-decoration: underline;
+  color: hsl(240, 54%, 60%);
   cursor: pointer;
 }
 
@@ -43,7 +44,6 @@
 
 .blog-item .blog-item-content div span:hover {
   background: hsl(120, 50%, 48%);
-  text-decoration: underline;
 }
 
 .read-more-btn {
@@ -53,47 +53,85 @@
   border: none;
   outline: none;
   font-size: 1rem;
-  background: grey;
+  background: hsl(0, 0%, 40%);
   color: #fff;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
 
 .read-more-btn:hover {
-  transform: scaleX(1.1);
+  background: hsl(0, 0%, 45%);
 }
 
 .blog-item-content .img {
-  height: 164px;
-  width: 240px;
+  height: 190px;
+  width: 280px;
   background: center center/cover;
   border: 1px grey solid;
   border-radius: 1rem;
   cursor: pointer;
+  align-self: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .blog-item-content .info h1 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
+    overflow-wrap: wrap;
+  }
+  .blog-item-content .img {
+    height: 170px;
+    width: 240px;
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 768px) {
+  .blog-item {
+    width: 90vw;
+  }
+  .blog-item-content .info h1 {
+    font-size: 1.3rem;
+  }
+  .blog-item-content .blog-date,
+  .blog-author {
+    font-size: 0.8rem;
+  }
+  .blog-item-content .img {
+    height: 160px;
+    width: 230px;
+  }
+  .read-more-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 550px) {
   .blog-item-content {
     align-items: center;
     flex-direction: column-reverse;
+  }
+  .blog-item-content .img {
+    height: 170px;
+    width: 250px;
   }
   .blog-item-content .info {
     text-align: center;
     align-items: center;
   }
   .blog-item-content .info h1 {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
   }
   .read-more-btn {
-    transform: scale(0.8);
+    padding: 0.8rem 1rem;
+    font-size: 0.8rem;
   }
-  .blog-item .blog-item-content div span {
-    font-size: 15px;
+}
+
+@media (max-width: 400px) {
+  .blog-item-content .info {
+    width: 100%;
+  }
+  .blog-item-content .info h1 {
+    font-size: 1rem;
   }
 }

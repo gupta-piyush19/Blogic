@@ -66,8 +66,8 @@ const Home = () => {
                     <div onClick={() => viewHandler(blog)}>
                       <h1>{blog.title}</h1>
                     </div>
-                    <div>{getDate(blog.createdAt)}</div>
-                    <div>
+                    <div className="blog-date">{getDate(blog.createdAt)}</div>
+                    <div className="blog-author">
                       By{" "}
                       <span onClick={() => redirectHandler(blog.owner._id)}>
                         {blog.owner.name}
