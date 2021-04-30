@@ -91,11 +91,13 @@ const DraftEditor = (props) => {
   };
 
   const preview = (image) => {
+    imagePreview.current.style.display = "";
     const imageURL = URL.createObjectURL(image);
     imagePreview.current.src = imageURL;
   };
 
   const clearImage = () => {
+    imagePreview.current.style.display = "none";
     imagePreview.current.src = "";
     setImage("");
   };
@@ -142,7 +144,7 @@ const DraftEditor = (props) => {
                 preview(e.target.files[0]);
               }}
             />
-            <img src="" ref={imagePreview} />
+            <img ref={imagePreview} />
             {image && (
               <button className="cancel-btn" onClick={clearImage}>
                 ✖

@@ -25,13 +25,7 @@ const Navbar = () => {
             border: "none",
           }}
         >
-          <FontAwesomeIcon
-            style={{
-              width: "28px",
-              height: "28px",
-            }}
-            icon={faPlusSquare}
-          />
+          <FontAwesomeIcon className="plus-icon" icon={faPlusSquare} />
         </Link>
       </li>
       <li className="temp-style">Hello {user && user.name}</li>
@@ -58,18 +52,17 @@ const Navbar = () => {
     <div className="navbar">
       <div className="container">
         <nav className="navbar-content">
-          <h1>
-            <Link
-              to="/"
-              style={{
-                fontSize: "2.2rem",
-                textDecoration: "none",
-                fontFamily: '"Fira Mono"',
-              }}
-            >
-              Blogic
-            </Link>
-          </h1>
+          <Link
+            to="/"
+            style={{
+              fontSize: "2.2rem",
+              textDecoration: "none",
+              fontFamily: '"Fira Mono"',
+            }}
+            className="logo"
+          >
+            Blogic
+          </Link>
           <ul className="links">{isAuthenticated ? authLinks : guestLinks}</ul>
         </nav>
       </div>

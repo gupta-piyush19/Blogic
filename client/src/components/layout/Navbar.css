@@ -1,8 +1,12 @@
+.navbar * {
+  margin: 0;
+  padding: 0;
+}
+
 .navbar {
   background: hsl(259, 6%, 39%);
   color: #fff;
   padding: 0.5rem 0;
-  /* height: 70px; */
 }
 
 .container {
@@ -20,15 +24,24 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100%;
+}
+
+.logo {
+  font-weight: bold;
 }
 
 .navbar-content .links {
   display: flex;
+  align-items: center;
+}
+
+.plus-icon {
+  height: 28px;
+  width: 28px !important;
 }
 
 .navbar-content .links li {
-  padding: 1rem 1.5rem;
+  padding: 0.8rem 1.5rem;
 }
 
 .navbar-content .links a {
@@ -53,8 +66,20 @@
   border-color: #ccc;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 550px) {
   .navbar-content {
     flex-direction: column;
+    align-items: center;
+  }
+  .plus-icon {
+    width: 20px !important;
+  }
+  .navbar-content .links {
+    width: 100%;
+    justify-content: space-around;
+  }
+  .navbar-content .links li {
+    font-size: 1.1rem;
+    padding: 0.8rem 0.6rem;
   }
 }
