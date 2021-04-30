@@ -5,8 +5,10 @@
   align-items: center;
 }
 
-.register {
+.register,
+.login {
   width: 100%;
+  margin: 1rem auto;
 }
 
 .form-container {
@@ -72,4 +74,37 @@
 .form-container p span a {
   text-decoration: none;
   color: rgb(38, 145, 217);
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    width: 80vw;
+  }
+  .form-container h1 {
+    font-size: 2.4rem;
+  }
+  .form-group {
+    margin-bottom: 1.2rem;
+  }
+  .show-password input {
+    height: 14px;
+    width: 14px;
+  }
+  .show-password {
+    font-size: 14px;
+  }
+  .form-container button {
+    font-size: 1rem;
+    padding: 0.6rem 1.4rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .form-container {
+    margin: 0;
+    width: 90vw;
+  }
+  .form-container h1 {
+    font-size: 40px;
+  }
 }

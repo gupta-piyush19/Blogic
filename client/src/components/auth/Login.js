@@ -48,12 +48,7 @@ const Login = () => {
   };
 
   return (
-    <div
-      className="login"
-      style={{
-        width: "100%",
-      }}
-    >
+    <div className="login">
       <div className="container flex">
         <div className="form-container">
           <Alert />
