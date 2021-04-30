@@ -1,6 +1,6 @@
 .view-blog {
-  width: 50%;
-  margin: 3rem auto;
+  width: 60%;
+  margin: 2rem auto;
   padding: 1rem;
 }
 
@@ -43,7 +43,7 @@
 }
 
 .owner-name:hover .left-icon {
-  margin-left: 48px;
+  margin-left: 30px;
 }
 
 .view-blog .editor {
@@ -83,4 +83,68 @@
 
 .view-blog .buttons .delete-btn:hover {
   background: hsl(0, 100%, 50%);
+}
+
+@media (max-width: 900px) {
+  .view-blog {
+    width: 80vw;
+    padding: 0.8rem;
+  }
+  .blogTitle {
+    font-size: 2rem;
+  }
+  .view-blog .editor {
+    font-size: 20px;
+    line-height: 1.7;
+  }
+  .owner-icon {
+    font-size: 2rem;
+    margin-right: 0.7rem;
+  }
+  .owner-name {
+    font-size: 1rem;
+    padding: 0.3rem 0.7rem;
+  }
+  .left-icon {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .view-blog {
+    width: 96vw;
+    margin-top: 1rem;
+  }
+  .blogTitle {
+    font-size: 1.6rem;
+  }
+  .view-blog .editor {
+    font-size: 19px;
+  }
+  .owner-icon {
+    font-size: 1.8rem;
+    margin-right: 0.6rem;
+  }
+  .owner-name {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .view-blog {
+    width: 98vw;
+  }
+  .blogTitle {
+    font-size: 1.7rem;
+  }
+  .view-blog .editor {
+    font-size: 18px;
+  }
+  .owner-icon {
+    font-size: 1.8rem;
+    margin-right: 0.5rem;
+  }
+  .owner-name {
+    font-size: 1rem;
+  }
 }

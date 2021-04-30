@@ -61,7 +61,7 @@ const ViewEditor = (props) => {
     return (
       blog && (
         <div className="view-blog">
-          <div className="container">
+          <div>
             <h1 class="blogTitle">{blog.title}</h1>
             <img src={blog.image} alt="" />
             <div className="owner">
