@@ -166,15 +166,7 @@ const DraftEditor = (props) => {
           // onClick={focusEditor} preparing for font size feature(DropDown)
         >
           <Toolbar editorState={editorState} setEditorState={setEditorState} />
-          <div
-            className="editor-container"
-            style={{
-              fontFamily:
-                '"charter", "Georgia", "Cambria", "Times New Roman", "Times", "serif"',
-              lineHeight: 2,
-              fontSize: "18px",
-            }}
-          >
+          <div className="editor-container">
             <Editor
               ref={editor}
               // readOnly
