@@ -13,6 +13,7 @@
 .view-blog img {
   width: 100%;
   height: 40%;
+  border-radius: 10px;
 }
 
 .owner {
@@ -146,5 +147,12 @@
   }
   .owner-name {
     font-size: 1rem;
+  }
+  .buttons {
+    text-align: center;
+  }
+  .view-blog .buttons .btn {
+    margin-right: 0rem;
+    transform: scale(0.9);
   }
 }

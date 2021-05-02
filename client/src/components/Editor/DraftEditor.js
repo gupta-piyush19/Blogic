@@ -144,12 +144,14 @@ const DraftEditor = (props) => {
                 preview(e.target.files[0]);
               }}
             />
-            <img ref={imagePreview} />
-            {image && (
-              <button className="cancel-btn" onClick={clearImage}>
-                ✖
-              </button>
-            )}
+            <div className="img">
+              <img ref={imagePreview} />
+              {image && (
+                <button className="cancel-btn" onClick={clearImage}>
+                  ✖
+                </button>
+              )}
+            </div>
           </span>
           <input
             type="text"

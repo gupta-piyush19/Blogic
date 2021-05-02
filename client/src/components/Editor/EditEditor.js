@@ -51,11 +51,13 @@ const EditEditor = (props) => {
     uploadButton.current.click();
   };
   const previewImage = (image) => {
+    preview.current.style.display = "";
     const imageUrl = URL.createObjectURL(image);
     preview.current.src = imageUrl;
   };
 
   const handleImage = () => {
+    preview.current.style.display = "none";
     preview.current.src = "";
     setImage("");
   };
@@ -136,13 +138,14 @@ const EditEditor = (props) => {
                   />
                 </>
               )}
-
-              <img src={blog.image} ref={preview} />
-              {image && (
-                <button className="cancel-btn" onClick={handleImage}>
-                  ✖
-                </button>
-              )}
+              <div className="img">
+                <img src={blog.image} ref={preview} />
+                {image && (
+                  <button className="cancel-btn" onClick={handleImage}>
+                    ✖
+                  </button>
+                )}
+              </div>
             </span>
           </div>
           <div className="editor-wrapper">
@@ -150,15 +153,7 @@ const EditEditor = (props) => {
               editorState={editorState}
               setEditorState={setEditorState}
             />
-            <div
-              className="editor-container"
-              style={{
-                fontFamily:
-                  '"charter", "Georgia", "Cambria", "Times New Roman", "Times", "serif"',
-                lineHeight: 2,
-                fontSize: "18px",
-              }}
-            >
+            <div className="editor-container">
               <Editor
                 handleKeyCommand={handleKeyCommand}
                 editorState={editorState}

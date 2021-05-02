@@ -1,29 +1,38 @@
 * {
-  margin: 0px;
+  margin: 0;
   box-sizing: border-box;
 }
 
-.create-blog {
+.create-blog,
+.edit-blog {
   margin: 3rem auto;
   padding: 1rem;
 }
 
-.create-blog-header {
+.create-blog-header,
+.edit-blog-header {
   margin: 0 auto 1rem auto;
   width: 75%;
 }
 
-.create-blog-header span {
+.create-blog-header span,
+.edit-blog-header span {
   margin-top: 1rem;
-  text-align: center;
-  padding: auto;
-  display: block;
-  position: relative;
 }
 
-.create-blog-header img {
-  height: 40%;
+.create-blog-header .img,
+.edit-blog-header .img {
+  position: relative;
+  display: block;
+  height: 100%;
   width: 100%;
+}
+.create-blog-header .img img,
+.edit-blog-header .img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  filter: drop-shadow(0 0 0.75rem #4444dd);
 }
 
 .title {
@@ -48,14 +57,15 @@
   letter-spacing: 0.4rem;
 }
 
-.create-blog-header .button {
+.create-blog-header .button,
+.edit-blog-header .button {
   display: block;
   margin: auto;
   width: 100%;
-  height: auto;
+  height: 5rem;
   outline: none;
   border: none;
-  background: hsl(0, 0%, 60%);
+  background: hsl(0, 0%, 70%);
   color: #fff;
   cursor: pointer;
   font-size: 4rem;
@@ -63,15 +73,9 @@
   transition: all 0.2s ease-out;
 }
 
-.create-blog-header .button:hover {
+.create-blog-header .button:hover,
+.edit-blog-header .button:hover {
   background: hsl(0, 0%, 50%);
-}
-
-.image img {
-  display: block;
-  margin: auto;
-  height: 60%;
-  width: 40%;
 }
 
 .editor-wrapper {
@@ -170,16 +174,19 @@
 }
 
 @media (max-width: 900px) {
-  .create-blog {
+  .create-blog,
+  .edit-blog {
     width: 100vw;
   }
-  .create-blog-header {
+  .create-blog-header,
+  .edit-blog-header {
     width: 90vw;
   }
   .editor-wrapper {
     width: 90vw;
   }
-  .create-blog-header .button {
+  .create-blog-header .button,
+  .edit-blog-header .button {
     font-size: 3.6rem;
   }
   .title {
@@ -192,7 +199,8 @@
 }
 
 @media (max-width: 768px) {
-  .create-blog-header .button {
+  .create-blog-header .button,
+  .edit-blog-header .button {
     font-size: 3.4rem;
   }
   .title {
@@ -209,12 +217,13 @@
     padding: 0.6rem;
   }
   .save-btn {
-    font-size: 1rem;
+    font-size: 1.3rem;
   }
 }
 
 @media (max-width: 550px) {
-  .create-blog-header {
+  .create-blog-header,
+  .edit-blog-header {
     width: 100%;
   }
   .editor-wrapper {
@@ -224,7 +233,8 @@
     line-height: 1.6;
     font-size: 16px !important;
   }
-  .create-blog-header .button {
+  .create-blog-header .button,
+  .edit-blog-header .button {
     font-size: 3.2rem;
   }
   .title {
@@ -241,7 +251,7 @@
     padding: 0.5rem;
   }
   .save-btn {
-    font-size: 1rem;
+    font-size: 1.2rem;
     padding: 0.9rem;
     letter-spacing: 1.1px;
   }
