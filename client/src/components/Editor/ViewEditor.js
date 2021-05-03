@@ -10,6 +10,7 @@ import {
   faChevronRight,
   faUserCircle,
 } from "@fortawesome/free-solid-svg-icons";
+import ScrollIndicator from "../layout/ScrollIndicator";
 
 const ViewEditor = (props) => {
   const { blog, getBlog, deleteBlog, clearBlog, loading } = useContext(
@@ -60,47 +61,50 @@ const ViewEditor = (props) => {
   } else {
     return (
       blog && (
-        <div className="view-blog">
-          <div>
-            <h1 class="blogTitle">{blog.title}</h1>
-            <img src={blog.image} alt="" />
-            <div className="owner">
-              <FontAwesomeIcon className="owner-icon" icon={faUserCircle} />
-              <span
-                className="owner-name"
-                onClick={() => redirectHandler(blog.owner._id)}
-              >
-                {blog.owner.name}{" "}
-                <span className="left-icon">
-                  <FontAwesomeIcon icon={faChevronRight} />
-                  <FontAwesomeIcon icon={faChevronRight} />{" "}
+        <div>
+          <ScrollIndicator />
+          <div className="view-blog">
+            <div>
+              <h1 class="blogTitle">{blog.title}</h1>
+              <img src={blog.image} alt="" />
+              <div className="owner">
+                <FontAwesomeIcon className="owner-icon" icon={faUserCircle} />
+                <span
+                  className="owner-name"
+                  onClick={() => redirectHandler(blog.owner._id)}
+                >
+                  {blog.owner.name}{" "}
+                  <span className="left-icon">
+                    <FontAwesomeIcon icon={faChevronRight} />
+                    <FontAwesomeIcon icon={faChevronRight} />{" "}
+                  </span>
                 </span>
-              </span>
-            </div>
-            <div className="editor">
-              <Editor
-                readOnly
-                editorState={editorState}
-                customStyleMap={styleMap}
-                blockStyleFn={myBlockStyleFn}
-              />
-            </div>
-            {user && blog.owner._id === user._id && (
-              <div className="buttons">
-                <button
-                  className="edit-btn btn"
-                  onClick={() => editHandler(blog._id)}
-                >
-                  Edit Blog
-                </button>
-                <button
-                  className="delete-btn btn"
-                  onClick={() => deleteHandler(blog._id)}
-                >
-                  Delete Blog
-                </button>
               </div>
-            )}
+              <div className="editor">
+                <Editor
+                  readOnly
+                  editorState={editorState}
+                  customStyleMap={styleMap}
+                  blockStyleFn={myBlockStyleFn}
+                />
+              </div>
+              {user && blog.owner._id === user._id && (
+                <div className="buttons">
+                  <button
+                    className="edit-btn btn"
+                    onClick={() => editHandler(blog._id)}
+                  >
+                    Edit Blog
+                  </button>
+                  <button
+                    className="delete-btn btn"
+                    onClick={() => deleteHandler(blog._id)}
+                  >
+                    Delete Blog
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )

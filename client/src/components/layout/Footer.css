@@ -3,6 +3,7 @@
   background: #333;
   color: #fff;
   padding: 0.6rem 0;
+  z-index: 3;
 }
 
 a {

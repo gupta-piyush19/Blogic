@@ -1,0 +1,18 @@
+.indicator-wrapper {
+  height: 6px;
+  position: sticky;
+  top: 0;
+  background-color: transparent;
+  z-index: 1;
+}
+
+.indicator-content {
+  background-color: #00cc83;
+  height: 100%;
+}
+
+@media (max-width: 550px) {
+  .indicator-wrapper {
+    height: 5px;
+  }
+}

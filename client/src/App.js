@@ -12,6 +12,7 @@ import EditEditor from "./components/Editor/EditEditor";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import Delete from "./components/Pages/Delete";
 import UserBlogs from "./components/Pages/UserBlogs";
+import ScrollArrow from "./components/layout/ScrollArrow";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -53,6 +54,7 @@ function App() {
         />
         <PrivateRoute exact path="/blogs/delete" component={Delete} />
       </Switch>
+      <ScrollArrow />
       <Footer />
     </div>
   );

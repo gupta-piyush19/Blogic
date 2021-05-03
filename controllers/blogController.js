@@ -3,7 +3,7 @@ const fs = require("fs");
 
 exports.getAllBlogs = async (req, res) => {
   try {
-    const blogs = await Blog.find().populate("owner");
+    const blogs = await Blog.find().populate("owner").sort({ createdAt: -1 });
     res.status(200).json({
       status: "success",
       results: blogs.length,
