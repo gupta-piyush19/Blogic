@@ -68,7 +68,6 @@ const EditEditor = (props) => {
     } else {
       const contentState = editorState.getCurrentContent();
       const body = JSON.stringify(convertToRaw(contentState));
-      console.log(id, title, image);
       updateBlog(id, {
         title,
         image,

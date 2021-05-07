@@ -35,7 +35,6 @@ const UserBlogs = (props) => {
         idCopy = param[1];
       }
     }
-    console.log(idCopy);
     getAllBlogsByUser(idCopy);
   }, []);
 

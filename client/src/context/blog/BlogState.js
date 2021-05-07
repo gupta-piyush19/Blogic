@@ -117,7 +117,6 @@ const BlogState = (props) => {
         payload: res.data.data.blog,
       });
     } catch (err) {
-      console.log(err);
       dispatch({
         type: BLOG_ERROR,
         payload: err.response.data.message,

@@ -149,6 +149,109 @@ exports.deleteBlog = async (req, res) => {
   }
 };
 
+exports.likeBlog = async (req, res) => {
+  try {
+    const blog = await Blog.findById(req.params.blogId);
+    const user = req.user;
+
+    if (!blog) {
+      return res.status(404).json({
+        status: "fail",
+        message: "Blog Does not Exist",
+      });
+    }
+
+    const blogLikes = [...blog.likes];
+
+    const checkUser = blogLikes.findIndex((likedUserId) =>
+      likedUserId.equals(user._id)
+    );
+
+    if (checkUser !== -1) {
+      return res.status(400).json({
+        status: "fail",
+        message: "You have already liked this blog",
+      });
+    }
+
+    blogLikes.push(user._id);
+
+    const likedBlog = await Blog.findByIdAndUpdate(
+      req.params.blogId,
+      { likes: blogLikes },
+      { new: true }
+    );
+
+    return res.status(200).json({
+      status: "success",
+      data: {
+        likes: blogLikes.length,
+        likedBlog,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "fail",
+      message: err.message,
+    });
+  }
+};
+
+exports.unlikeBlog = async (req, res) => {
+  try {
+    const blog = await Blog.findById(req.params.blogId);
+    const user = req.user;
+
+    if (!blog) {
+      return res.status(404).json({
+        status: "fail",
+        message: "Blog Does not Exist",
+      });
+    }
+
+    if (!blog.likes || !blog.likes.length) {
+      return res.status(404).json({
+        status: "fail",
+        message: "This blog has no likes",
+      });
+    }
+
+    const blogLikes = [...blog.likes];
+
+    const checkUser = blogLikes.findIndex((likedUserId) =>
+      likedUserId.equals(user._id)
+    );
+
+    if (checkUser === -1) {
+      return res.status(400).json({
+        status: "fail",
+        message: "You have not liked this blog.",
+      });
+    }
+
+    blogLikes.splice(checkUser, 1);
+
+    const unlikedBlog = await Blog.findByIdAndUpdate(
+      req.params.blogId,
+      { likes: blogLikes },
+      { new: true }
+    );
+
+    return res.status(200).json({
+      status: "success",
+      data: {
+        likes: blogLikes.length,
+        unlikedBlog,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "fail",
+      message: err.message,
+    });
+  }
+};
+
 exports.getAllBlogByUser = async (req, res) => {
   try {
     const blogs = await Blog.find({ owner: req.params.userId }).populate(

@@ -6,6 +6,8 @@ const {
   createBlog,
   updateBlog,
   deleteBlog,
+  likeBlog,
+  unlikeBlog,
   getAllBlogByUser,
 } = require("../controllers/blogController");
 const { protect, isOwner } = require("../middlewares/authMiddleware");
@@ -52,6 +54,7 @@ const upload = multer({
   },
   fileFilter: fileFilter,
 });
+
 // @desc    Create a Blog
 // @route   POST /api/blogs
 // @access  private
@@ -66,6 +69,16 @@ router.patch("/:blogId", protect, isOwner, upload.single("image"), updateBlog);
 // @route   DELETE /api/blogs/:blogId
 // @access  private
 router.delete("/:blogId", protect, isOwner, deleteBlog);
+
+// @desc    Like a Blog
+// @route   POST /api/blogs/like/:blogID
+// @access  private
+router.post("/like/:blogId", protect, likeBlog);
+
+// @desc    Unlike a Blog
+// @route   POST /api/blogs/unlike/:blogId
+// @access  private
+router.post("/unlike/:blogId", protect, unlikeBlog);
 
 // @desc    Get all Blogs by a particular User
 // @route   GET /api/blogs/by/:userId
