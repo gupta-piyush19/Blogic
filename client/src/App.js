@@ -10,7 +10,6 @@ import ViewEditor from "./components/Editor/ViewEditor";
 import Home from "./components/Pages/Home";
 import EditEditor from "./components/Editor/EditEditor";
 import PrivateRoute from "./components/routing/PrivateRoute";
-import Delete from "./components/Pages/Delete";
 import UserBlogs from "./components/Pages/UserBlogs";
 import ScrollArrow from "./components/layout/ScrollArrow";
 
@@ -52,7 +51,6 @@ function App() {
           path="/blogs/edit"
           render={(props) => <EditEditor {...props} />}
         />
-        <PrivateRoute exact path="/blogs/delete" component={Delete} />
       </Switch>
       <ScrollArrow />
       <Footer />

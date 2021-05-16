@@ -8,6 +8,8 @@ import {
   BLOG_ERROR,
   CLEAR_BLOG,
   SET_LOADING,
+  LIKE_BLOG,
+  UNLIKE_BLOG,
 } from "../types";
 
 export default (state, action) => {
@@ -15,7 +17,7 @@ export default (state, action) => {
     case CREATE_BLOG:
       return {
         ...state,
-        blogs: [...state.blogs, action.payload],
+        blogs: [action.payload, ...state.blogs],
         loading: false,
       };
     case GET_BLOG:
@@ -39,11 +41,21 @@ export default (state, action) => {
     case UPDATE_BLOG:
       return {
         ...state,
+        blogs: state.blogs.map((blog) =>
+          blog._id === action.payload._id
+            ? { ...action.payload, owner: blog.owner }
+            : blog
+        ),
         blog: action.payload,
         loading: false,
       };
-    case CLEAR_BLOG:
-    case DELETE_BLOG: {
+    case DELETE_BLOG:
+      return {
+        ...state,
+        blogs: state.blogs.filter((blog) => blog._id !== action.payload),
+        blog: null,
+      };
+    case CLEAR_BLOG: {
       return {
         ...state,
         blogs: [],
@@ -61,6 +73,32 @@ export default (state, action) => {
         ...state,
         error: action.payload,
         loading: true,
+      };
+    case LIKE_BLOG:
+      return {
+        ...state,
+        blogs: state.blogs.map((blog) =>
+          blog._id === action.payload.blogId
+            ? {
+                ...blog,
+                likes: [...blog.likes, action.payload.userId],
+              }
+            : blog
+        ),
+      };
+    case UNLIKE_BLOG:
+      return {
+        ...state,
+        blogs: state.blogs.map((blog) =>
+          blog._id === action.payload.blogId
+            ? {
+                ...blog,
+                likes: blog.likes.filter(
+                  (likeUserId) => likeUserId !== action.payload.userId
+                ),
+              }
+            : blog
+        ),
       };
     default:
       return state;

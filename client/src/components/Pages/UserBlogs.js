@@ -1,7 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
-
 import BlogContext from "../../context/blog/blogContext";
 import Spinner from "../layout/Spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -83,8 +81,6 @@ const UserBlogs = (props) => {
                     onClick={() => viewHandler(blog)}
                   />
                 </div>
-
-                {/* </div> */}
               </div>
             ))}
         </div>

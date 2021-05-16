@@ -254,9 +254,9 @@ exports.unlikeBlog = async (req, res) => {
 
 exports.getAllBlogByUser = async (req, res) => {
   try {
-    const blogs = await Blog.find({ owner: req.params.userId }).populate(
-      "owner"
-    );
+    const blogs = await Blog.find({ owner: req.params.userId })
+      .populate("owner")
+      .sort({ createdAt: -1 });
     res.status(200).json({
       status: "success",
       results: blogs.length,

@@ -13,6 +13,8 @@ import {
   BLOG_ERROR,
   CLEAR_BLOG,
   SET_LOADING,
+  LIKE_BLOG,
+  UNLIKE_BLOG,
 } from "../types";
 
 const BlogState = (props) => {
@@ -25,7 +27,7 @@ const BlogState = (props) => {
   };
   const [state, dispatch] = useReducer(blogReducer, initialState);
 
-  const createBlog = async (blog) => {
+  const createBlog = async (blog, currUser) => {
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -39,7 +41,7 @@ const BlogState = (props) => {
       const res = await axios.post("/api/blogs", formData, config);
       dispatch({
         type: CREATE_BLOG,
-        payload: res.data.data.blog,
+        payload: { ...res.data.data.blog, owner: currUser },
       });
     } catch (err) {
       dispatch({
@@ -127,7 +129,31 @@ const BlogState = (props) => {
   const deleteBlog = async (id) => {
     try {
       await axios.delete(`/api/blogs/${id}`);
-      dispatch({ type: DELETE_BLOG });
+      dispatch({ type: DELETE_BLOG, payload: id });
+    } catch (err) {
+      dispatch({
+        type: BLOG_ERROR,
+        payload: err.response.data.message,
+      });
+    }
+  };
+
+  const likeBlog = async (blogId, userId) => {
+    try {
+      axios.post(`/api/blogs/like/${blogId}`);
+      dispatch({ type: LIKE_BLOG, payload: { blogId, userId } });
+    } catch (err) {
+      dispatch({
+        type: BLOG_ERROR,
+        payload: err.response.data.message,
+      });
+    }
+  };
+
+  const unLikeBlog = async (blogId, userId) => {
+    try {
+      axios.post(`/api/blogs/unlike/${blogId}`);
+      dispatch({ type: UNLIKE_BLOG, payload: { blogId, userId } });
     } catch (err) {
       dispatch({
         type: BLOG_ERROR,
@@ -157,6 +183,8 @@ const BlogState = (props) => {
         getAllBlogsByUser,
         updateBlog,
         deleteBlog,
+        likeBlog,
+        unLikeBlog,
         clearBlog,
       }}
     >

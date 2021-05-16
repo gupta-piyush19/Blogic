@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { useHistory } from "react-router";
 import "./BlogItem.css";
 import BlogContext from "../../context/blog/blogContext";
+import AuthContext from "../../context/auth/authContext";
 import Spinner from "../layout/Spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,7 +12,9 @@ import {
 
 const Home = () => {
   const history = useHistory();
-  const { blogs, getAllBlogs, loading } = useContext(BlogContext);
+  const { blogs, getAllBlogs, likeBlog, unLikeBlog, loading } =
+    useContext(BlogContext);
+  const { isAuthenticated, user } = useContext(AuthContext);
   const months = [
     "Jan",
     "Feb",
@@ -27,7 +30,11 @@ const Home = () => {
     "Dec",
   ];
   useEffect(() => {
-    getAllBlogs();
+    // props.location.state ? state.blogs : getAllBlogs();
+    window.scrollTo(0, 0);
+    if (!blogs || blogs.length == 0) {
+      getAllBlogs();
+    }
   }, []);
 
   const redirectHandler = (id) => {
@@ -80,6 +87,26 @@ const Home = () => {
                       Read More <FontAwesomeIcon icon={faArrowRight} />
                       <FontAwesomeIcon icon={faChevronRight} />
                     </button>
+                    <div className="like_comp">
+                      <button className="like-btn">
+                        {isAuthenticated && user ? (
+                          blog.likes.indexOf(user._id) !== -1 ? (
+                            <i
+                              class="fas fa-heart filled"
+                              onClick={() => unLikeBlog(blog._id, user._id)}
+                            ></i>
+                          ) : (
+                            <i
+                              class="fas fa-heart"
+                              onClick={() => likeBlog(blog._id, user._id)}
+                            ></i>
+                          )
+                        ) : (
+                          <i class="fas fa-heart"></i>
+                        )}
+                      </button>
+                      <span className="like-cnt">{blog.likes.length}</span>
+                    </div>
                   </div>
                   <div
                     className="img"

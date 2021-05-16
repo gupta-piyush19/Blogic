@@ -13,15 +13,12 @@ import {
 import ScrollIndicator from "../layout/ScrollIndicator";
 
 const ViewEditor = (props) => {
-  const { blog, getBlog, deleteBlog, clearBlog, loading } = useContext(
-    BlogContext
-  );
+  const { blog, getBlog, deleteBlog, loading } = useContext(BlogContext);
   const { user } = useContext(AuthContext);
 
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
   useEffect(async () => {
-    clearBlog();
     const queryParams = new URLSearchParams(props.location.search);
     let idCopy;
     for (let param of queryParams.entries()) {
@@ -51,8 +48,7 @@ const ViewEditor = (props) => {
   const deleteHandler = (id) => {
     deleteBlog(id);
     props.history.push({
-      pathname: "/blogs/delete",
-      search: `id=${id}`,
+      pathname: "/",
     });
   };
 

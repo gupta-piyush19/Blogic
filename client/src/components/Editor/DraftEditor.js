@@ -9,6 +9,7 @@ import {
 import Toolbar from "./Toolbar/Toolbar";
 import AlertContext from "../../context/alert/alertContext";
 import BlogContext from "../../context/blog/blogContext";
+import AuthContext from "../../context/auth/authContext";
 import "./DraftEditor.css";
 import { useHistory } from "react-router";
 import { styleMap, myBlockStyleFn } from "./editorStyles";
@@ -17,6 +18,8 @@ import Alert from "../layout/Alert";
 const DraftEditor = (props) => {
   const { createBlog } = useContext(BlogContext);
   const { setAlert } = useContext(AlertContext);
+  const { user } = useContext(AuthContext);
+
   const history = useHistory();
 
   const imagePreview = useRef(null);
@@ -107,11 +110,14 @@ const DraftEditor = (props) => {
       setAlert("Please fill all the fields", "warning");
     } else {
       const contentState = editorState.getCurrentContent();
-      createBlog({
-        title,
-        image,
-        body: JSON.stringify(convertToRaw(contentState)),
-      });
+      createBlog(
+        {
+          title,
+          image,
+          body: JSON.stringify(convertToRaw(contentState)),
+        },
+        user
+      );
       history.push({
         pathname: "/",
       });

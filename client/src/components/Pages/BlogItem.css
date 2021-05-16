@@ -33,7 +33,7 @@
   margin: 5px 0;
 }
 
-.blog-item .blog-item-content div span {
+.blog-item .blog-item-content div .blog-author span {
   text-transform: uppercase;
   background: hsl(120, 50%, 40%);
   padding: 0.3rem 0.6rem;
@@ -42,7 +42,7 @@
   cursor: pointer;
 }
 
-.blog-item .blog-item-content div span:hover {
+.blog-item .blog-item-content div .blog-author span:hover {
   background: hsl(120, 50%, 48%);
 }
 
@@ -61,6 +61,36 @@
 
 .read-more-btn:hover {
   background: hsl(0, 0%, 45%);
+}
+
+.like_comp {
+  display: flex;
+  align-items: center;
+}
+
+.like-btn {
+  background-color: transparent;
+  color: #777;
+  outline: none;
+  border: none;
+  font-size: 1.6rem;
+}
+
+.like-btn i {
+  cursor: pointer;
+  transition: all 0.1s ease-in;
+}
+
+.like-btn i:hover {
+  color: hsl(0, 80%, 60%);
+}
+
+.filled {
+  color: hsl(0, 80%, 60%);
+}
+
+.like-cnt {
+  font-size: 1.5rem;
 }
 
 .blog-item-content .img {
