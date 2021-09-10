@@ -79,21 +79,32 @@ exports.updateBlog = async (req, res) => {
           message: "Blog does not exist",
         });
       }
-      await fs.unlink(`./${updatingBlog.image}`, (err) => {
-        if (err && err.code == "ENOENT") {
-          // file doens't exist
-          console.info("File doesn't exist, won't remove it.");
-        } else if (err) {
-          // other errors, e.g. maybe we don't have enough permission
-          console.error("Error occurred while trying to remove file");
-        } else {
-          console.info(`removed`);
-        }
+      const imageName = updatingBlog.image
+        .split("/")
+        .slice(-1)[0]
+        .split(".")[0];
+
+      const newImage = await cloudinary.uploader.upload(req.file.path, {
+        public_id: imageName,
+        invalidate: true,
       });
+
+      // await fs.unlink(`./${updatingBlog.image}`, (err) => {
+      //   if (err && err.code == "ENOENT") {
+      //     // file doens't exist
+      //     console.info("File doesn't exist, won't remove it.");
+      //   } else if (err) {
+      //     // other errors, e.g. maybe we don't have enough permission
+      //     console.error("Error occurred while trying to remove file");
+      //   } else {
+      //     console.info(`removed`);
+      //   }
+      // });
 
       updatedBlog = {
         ...req.body,
-        image: req.file.path.replace(/\\/g, "/"),
+        // image: req.file.path.replace(/\\/g, "/"),
+        image: newImage.url,
       };
     } else {
       updatedBlog = {
@@ -127,17 +138,20 @@ exports.deleteBlog = async (req, res) => {
         message: "Blog does not exist",
       });
     }
-    await fs.unlink(`./${deletingBlog.image}`, (err) => {
-      if (err && err.code == "ENOENT") {
-        // file doens't exist
-        console.info("File doesn't exist, won't remove it.");
-      } else if (err) {
-        // other errors, e.g. maybe we don't have enough permission
-        console.error("Error occurred while trying to remove file");
-      } else {
-        console.info(`removed`);
-      }
-    });
+    const imageName = deletingBlog.image.split("/").slice(-1)[0].split(".")[0];
+    await cloudinary.uploader.destroy(imageName);
+
+    // await fs.unlink(`./${deletingBlog.image}`, (err) => {
+    //   if (err && err.code == "ENOENT") {
+    //     // file doens't exist
+    //     console.info("File doesn't exist, won't remove it.");
+    //   } else if (err) {
+    //     // other errors, e.g. maybe we don't have enough permission
+    //     console.error("Error occurred while trying to remove file");
+    //   } else {
+    //     console.info(`removed`);
+    //   }
+    // });
 
     deletingBlog.delete();
 
