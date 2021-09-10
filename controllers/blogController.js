@@ -1,5 +1,6 @@
 const Blog = require("../models/Blog");
 const fs = require("fs");
+const cloudinary = require("cloudinary").v2;
 
 exports.getAllBlogs = async (req, res) => {
   try {
@@ -45,9 +46,12 @@ exports.getBlogById = async (req, res) => {
 
 exports.createBlog = async (req, res) => {
   try {
+    const cloudinaryLink = await cloudinary.uploader.upload(req.file.path);
+
     const blog = await Blog.create({
       ...req.body,
-      image: req.file.path.replace(/\\/g, "/"),
+      // image: req.file.path.replace(/\\/g, "/"),
+      image: cloudinaryLink.url,
       owner: req.user._id,
     });
     res.status(200).json({

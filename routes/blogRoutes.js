@@ -25,11 +25,11 @@ router.get("/", getAllBlogs);
 router.get("/:blogId", getBlogById);
 
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    fs.mkdir("./uploads/", (err) => {
-      cb(null, "./uploads/");
-    });
-  },
+  // destination: function (req, file, cb) {
+  //   fs.mkdir("./uploads/", (err) => {
+  //     cb(null, "./uploads/");
+  //   });
+  // },
   filename: function (req, file, cb) {
     cb(null, new Date().toISOString().replace(/:/g, "-") + file.originalname);
   },
