@@ -13,9 +13,8 @@ const Register = () => {
   });
   const { name, email, password } = formData;
 
-  const { register, error, isAuthenticated, clearError } = useContext(
-    AuthContext
-  );
+  const { register, error, isAuthenticated, clearError } =
+    useContext(AuthContext);
   const { setAlert } = useContext(AlertContext);
   const passwordCol = useRef(null);
 
